@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutterx/domain/interfaces/icomponent.dart';
-import 'package:flutterx_example/ui/homepage/homepage.dart';
+import 'package:flutterx/infra/implementations/screen_default.dart';
+class FloatingActionButtonComponent implements IComponent<DefaultScreen, FloatingActionButton, void> {
 
-class FloatingActionButtonComponent implements IComponent<HomePageState, FloatingActionButton, void> {
-
-  final HomePageState screen;
-
-  FloatingActionButtonComponent(this.screen);
+  FloatingActionButtonComponent();
 
   @override
-  void afterEvent() {
-    return;
-  }
+  void afterEvent() {}
 
   @override
-  void beforeEvent() {
-    return;
-  }
+  void beforeEvent() {}
 
   @override
   FloatingActionButton constructor() {
@@ -27,12 +20,8 @@ class FloatingActionButtonComponent implements IComponent<HomePageState, Floatin
   }
 
   @override
-  void event() {
-    screen.getCount().value++;
-  }
+  void event() {}
 
   @override
-  void callEvent() {
-    event();
-  }
+  void callEvent() {}
 }

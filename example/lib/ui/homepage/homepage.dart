@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx/domain/interfaces/icomponent.dart';
-import 'package:flutterx/domain/interfaces/iscreen.dart';
 import 'package:flutterx_example/ui/homepage/components/floating_action_button_component.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,13 +8,13 @@ class HomePage extends StatefulWidget {
   HomePageState createState() => HomePageState();
 }
 
-class HomePageState extends State<HomePage> implements IScreen {
+class HomePageState extends State<HomePage> {
   final ValueNotifier _count = ValueNotifier(0);
   late FloatingActionButtonComponent floatingActionButtonComponent;
 
   @override
   void initState() {
-    floatingActionButtonComponent = FloatingActionButtonComponent(this);
+    floatingActionButtonComponent = FloatingActionButtonComponent();
     super.initState();
   }
 
@@ -33,11 +31,6 @@ class HomePageState extends State<HomePage> implements IScreen {
       ),
       floatingActionButton: floatingActionButtonComponent.constructor(),
     );
-  }
-
-  @override
-  void refreshScreen(IComponent component) {
-    component.callEvent();
   }
 
   ValueNotifier getCount() {

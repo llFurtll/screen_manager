@@ -1,7 +1,7 @@
 import 'iscreen.dart';
 
 abstract class IComponent<T extends IScreen, W, F> {
-  IComponent(T screen);
+  IComponent(T? screen);
 
   W constructor();
   F beforeEvent();
