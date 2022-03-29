@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx_example/ui/homepage/components/floating_action_button_component.dart';
+import 'package:flutterx/domain/interfaces/iscreen.dart';
+import 'package:flutterx_example/ui/homepage/components/float_action_button_component.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,32 +9,40 @@ class HomePage extends StatefulWidget {
   HomePageState createState() => HomePageState();
 }
 
-class HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> implements IScreen {
   final ValueNotifier _count = ValueNotifier(0);
-  late FloatingActionButtonComponent floatingActionButtonComponent;
+  final ValueNotifier<List<Widget>> _listaCards = ValueNotifier([]);
 
   @override
   void initState() {
-    floatingActionButtonComponent = FloatingActionButtonComponent();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ValueListenableBuilder(
-          valueListenable: _count,
-          builder: (BuildContext context, value, Widget? child) {
-            return Text("${_count.value}");
-          },
+      body: ValueListenableBuilder(
+        valueListenable: _listaCards,
+        builder: (context, value, child) => ListView(
+          children: _listaCards.value
         ),
       ),
-      floatingActionButton: floatingActionButtonComponent.constructor(),
+      floatingActionButton: FloatActionButtonComponent(this).constructor(),
     );
   }
 
   ValueNotifier getCount() {
     return _count;
+  }
+
+  ValueNotifier<List<Widget>> getListaCards() {
+    return _listaCards;
+  }
+
+  @override
+  void refreshScreen() {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text("A lista de Cards foi atualizada"),
+    ));
   }
 }
