@@ -12,10 +12,14 @@ class CardComponent implements IComponent<HomePageState, InkWell, void> {
   CardComponent(this.title, this.idade, this.screen);
 
   @override
-  void afterEvent() {}
+  void afterEvent() {
+    print("Vai abrir o Details...");
+  }
 
   @override
-  void beforeEvent() {}
+  void beforeEvent() {
+    print("Finalizou..");
+  }
 
   @override
   InkWell constructor() {
@@ -32,20 +36,16 @@ class CardComponent implements IComponent<HomePageState, InkWell, void> {
           ),
         ),
       ),
-      onTap: callEvent,
+      onTap: () => screen.emitScreen(this),
     );
   }
 
   @override
   void event() {
+    afterEvent();
     Navigator.of(screen.context).push(
       MaterialPageRoute(builder: (BuildContext context) => DetailsPage(title, idade)),
     );
-  }
-
-  @override
-  void callEvent() {
-    event();
-    screen.refreshScreen();
+    beforeEvent();
   }
 }

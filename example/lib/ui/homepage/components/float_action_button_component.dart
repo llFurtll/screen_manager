@@ -12,31 +12,26 @@ class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActio
 
   @override
   void afterEvent() {
-    return;
+    print("Irá atualizar a lista...");
   }
 
   @override
   void beforeEvent() {
-    return;
-  }
-
-  @override
-  void callEvent() {
-    event();
+    print("A lista foi atualizada...");
   }
 
   @override
   FloatingActionButton constructor() {
     return FloatingActionButton(
-      onPressed: callEvent,
+      onPressed: () => screen.emitScreen(this),
       child: const Icon(Icons.add),
     );
   }
 
   @override
   void event() {
-    screen.getListaCards().value.add(
-      CardComponent("Teste", "25", screen).constructor()
+    screen.getListCards().value = List.of(screen.getListCards().value)..add(
+      CardComponent("25", "15", screen).constructor()
     );
   }
   

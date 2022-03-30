@@ -7,5 +7,4 @@ abstract class IComponent<T extends IScreen?, W, F> {
   F beforeEvent();
   F event();
   F afterEvent();
-  F callEvent();
 }
