@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutterx/core/flutterx_listenable_builder.dart';
+import 'package:flutterx/core/flutterx_notifier.dart';
 import 'package:flutterx/domain/interfaces/iscreen.dart';
 import 'package:flutterx_example/ui/homepage/components/float_action_button_component.dart';
 
@@ -11,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> with IScreen {
-  final ValueNotifier<List<Widget>> _listaCards = ValueNotifier([]);
+  final FlutterXNotifier<List<Widget>> _listaCards = FlutterXNotifier([]);
 
   @override
   void initState() {
@@ -21,7 +23,7 @@ class HomePageState extends State<HomePage> with IScreen {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ValueListenableBuilder(
+      body: FlutterXListenableBuilder(
         valueListenable: _listaCards,
         builder: (context, value, child) => ListView(
           children: _listaCards.value,
@@ -31,7 +33,7 @@ class HomePageState extends State<HomePage> with IScreen {
     );
   }
 
-  ValueNotifier<List<Widget>> getListCards() {
+  FlutterXNotifier<List<Widget>> getListCards() {
     return _listaCards;
   }
 }
