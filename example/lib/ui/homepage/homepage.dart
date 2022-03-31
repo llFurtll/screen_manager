@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> with IScreen {
-  final FlutterXNotifier<List<Widget>> _listaCards = FlutterXNotifier([]);
+  final PropertyValueNotifier<Widget> _listaCards = PropertyValueNotifier(Container(), []);
 
   @override
   void initState() {
@@ -26,14 +26,14 @@ class HomePageState extends State<HomePage> with IScreen {
       body: FlutterXListenableBuilder(
         valueListenable: _listaCards,
         builder: (context, value, child) => ListView(
-          children: _listaCards.value,
+          children: _listaCards.items,
         ),
       ),
       floatingActionButton: FloatActionButtonComponent(this).constructor(),
     );
   }
 
-  FlutterXNotifier<List<Widget>> getListCards() {
+  PropertyValueNotifier<Widget> getListCards() {
     return _listaCards;
   }
 }

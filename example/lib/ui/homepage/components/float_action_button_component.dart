@@ -30,9 +30,8 @@ class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActio
 
   @override
   void event() {
-    screen.getListCards().addItem(
+    screen.getListCards().items.add(
       CardComponent("25", "15", screen).constructor()
     );
   }
-  
 }
