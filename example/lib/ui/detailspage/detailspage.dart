@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DetailsPage extends StatelessWidget {
-  final String title;
-  final String idade;
+  final String _name;
+  final String _age;
 
-  const DetailsPage(this.title, this.idade, {Key? key}) : super(key: key);
+  const DetailsPage(this._name, this._age, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +14,8 @@ class DetailsPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Title: $title"),
-            Text("Idade: $idade"),
+            Text("Name: $_name"),
+            Text("Age: $_age"),
           ],
         ),
       ),

@@ -5,20 +5,18 @@ import 'package:flutterx_example/ui/homepage/homepage.dart';
 
 class CardComponent implements IComponent<HomePageState, InkWell, void> {
 
-  String title;
-  String idade;
+  final String _name;
+  final String _age;
   HomePageState screen;
 
-  CardComponent(this.title, this.idade, this.screen);
+  CardComponent(this._name, this._age, this.screen);
 
   @override
   void afterEvent() {
-    print("Vai abrir o Details...");
   }
 
   @override
-  void beforeEvent() {
-    print("Finalizou..");
+  void beforeEvent() {  
   }
 
   @override
@@ -30,8 +28,8 @@ class CardComponent implements IComponent<HomePageState, InkWell, void> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(title),
-              Text(idade),
+              Text(_name),
+              Text(_age),
             ],
           ),
         ),
@@ -42,10 +40,8 @@ class CardComponent implements IComponent<HomePageState, InkWell, void> {
 
   @override
   void event() {
-    afterEvent();
     Navigator.of(screen.context).push(
-      MaterialPageRoute(builder: (BuildContext context) => DetailsPage(title, idade)),
+      MaterialPageRoute(builder: (BuildContext context) => DetailsPage(_name, _age)),
     );
-    beforeEvent();
   }
 }

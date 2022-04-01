@@ -1,27 +1,22 @@
 import 'dart:collection';
-
 import 'package:flutter/foundation.dart';
 
-import 'package:flutter/material.dart';
-
-class PropertyValueNotifier<T> extends ValueNotifier<T> {
-  T value;
-  final List<T> _items;
-
-  PropertyValueNotifier(this.value, this._items) : super(value);
-
-  ObservedList<T> get items => ObservedList(_items, notifyListeners);
-
-  @override
-  void notifyListeners() {
-    super.notifyListeners();
-  }
-}
-class ObservedList<T> with ListMixin<T> {
+class FlutterXNotifierList<T> extends ChangeNotifier implements ValueListenable<List<T>> {
   final List<T> _list;
-  final void Function() _modified;
 
-  ObservedList(this._list, this._modified);
+  FlutterXNotifierList(this._list);
+
+  FlutterXObservedList<T> get items => FlutterXObservedList(_list, notifyListeners);
+   
+  @override
+  List<T> get value => _list;
+}
+
+class FlutterXObservedList<T> extends ListBase<T> {
+  final List<T> _list;
+  final void Function() _notify;
+
+  FlutterXObservedList(this._list, this._notify);
 
   @override
   int get length => _list.length;
@@ -29,7 +24,7 @@ class ObservedList<T> with ListMixin<T> {
   @override
   set length(final int value) {
     _list.length = value;
-    _modified();
+    _notify();
   }
 
   @override
@@ -40,32 +35,32 @@ class ObservedList<T> with ListMixin<T> {
   @override
   void operator []=(final int index, final T value) {
     _list[index] = value;
-    _modified();
+    _notify();
   }
 
   @override
   void add(final T element) {
     _list.add(element);
-    _modified();
+    _notify();
   }
 
   @override
   void insert(final int index, final T element) {
     _list.insert(index, element);
-    _modified();
+    _notify();
   }
 
   @override
   bool remove(final Object? element) {
     final value = _list.remove(element);
-    _modified();
+    _notify();
     return value;
   }
 
   @override
   T removeAt(final int index) {
     final value = _list.removeAt(index);
-    _modified();
+    _notify();
     return value;
   }
 }
