@@ -1,7 +1,5 @@
 import 'icomponent.dart';
 
-mixin IScreen {
-  void emitScreen(IComponent component) {
-    component.event();
-  }
+abstract class IScreen {
+  void emitScreen(IComponent component);
 }

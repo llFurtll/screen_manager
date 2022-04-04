@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutterx/core/flutterx_listenable_builder.dart';
 import 'package:flutterx/core/flutterx_notifier_list.dart';
+import 'package:flutterx/domain/interfaces/icomponent.dart';
 import 'package:flutterx/domain/interfaces/iscreen.dart';
 import 'package:flutterx_example/ui/homepage/components/float_action_button_component.dart';
 
@@ -12,7 +13,7 @@ class HomePage extends StatefulWidget {
   HomePageState createState() => HomePageState();
 }
 
-class HomePageState extends State<HomePage> with IScreen {
+class HomePageState extends State<HomePage> implements IScreen {
   late final FlutterXNotifierList<Widget> _notifierList;
 
   @override
@@ -36,5 +37,10 @@ class HomePageState extends State<HomePage> with IScreen {
 
   FlutterXNotifierList<Widget> getListCards() {
     return _notifierList;
+  }
+
+  @override
+  void emitScreen(IComponent component) {
+    component.event();
   }
 }

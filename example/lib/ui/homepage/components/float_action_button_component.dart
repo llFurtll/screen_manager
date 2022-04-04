@@ -77,6 +77,8 @@ class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActio
               if (value == null || value.isEmpty) {
                 return "Fill in the name";
               }
+
+              return null;
             },
             controller: _name,
             decoration: const InputDecoration(
