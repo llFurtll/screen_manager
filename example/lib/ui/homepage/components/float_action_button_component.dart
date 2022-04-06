@@ -52,7 +52,7 @@ class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActio
                     TextButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                        Navigator.of(screen.context).pop(true);
+                          Navigator.of(screen.context).pop(true);
                         }
                       },
                       child: const Text("Register"),

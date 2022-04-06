@@ -13,9 +13,7 @@ class FlutterXListenableBuilder<T> extends StatefulWidget {
     required this.valueListenable,
     required this.builder,
     this.child,
-  }) : assert(valueListenable != null),
-       assert(builder != null),
-       super(key: key);
+  }) : super(key: key);
   
   @override
   State<StatefulWidget> createState() => FlutterXListenableBuilderState<T>();

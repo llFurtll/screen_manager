@@ -1,6 +1,7 @@
 import 'icomponent.dart';
+import 'conversable.dart';
 
-mixin IScreen {
+abstract class IScreen {
   void emitScreen(IComponent component) {
     component.event();
   }

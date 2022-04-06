@@ -19,6 +19,11 @@ class DetailsPage extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+        },
+        child: const Icon(Icons.delete),
+      ),
     );
   }
 }
