@@ -3,8 +3,6 @@ import 'package:flutterx/domain/interfaces/icomponent.dart';
 import 'package:flutterx_example/domain/implementations/entities/person.dart';
 import 'package:flutterx_example/ui/homepage/homepage.dart';
 
-import 'card_component.dart';
-
 class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActionButton, Future<bool>> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _name = TextEditingController();
@@ -113,10 +111,8 @@ class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActio
   @override
   Future<bool> event() async {
     if (await beforeEvent()) {
-      Person person = Person(name: _name.text, age: _age.text); 
-      _screen.getListCards().items.add(
-        CardComponent(person, _screen).constructor()
-      );
+      Person person = Person(name: _name.text, age: _age.text);
+      _screen.getListCards().items.add(person);
       afterEvent();
     }
 

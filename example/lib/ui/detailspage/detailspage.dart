@@ -24,7 +24,7 @@ class DetailsPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _conversable.callScreen("homepage")!.receive("remove", 0);
+          _conversable.callScreen("homepage")!.receive("remove", _person);
           Navigator.pop(context);
         },
         child: const Icon(Icons.delete),
