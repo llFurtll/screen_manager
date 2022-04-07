@@ -4,6 +4,7 @@ import 'package:flutterx/core/flutterx_listenable_builder.dart';
 import 'package:flutterx/core/flutterx_notifier_list.dart';
 import 'package:flutterx/domain/interfaces/icomponent.dart';
 import 'package:flutterx/domain/interfaces/iscreen.dart';
+import 'package:flutterx/domain/interfaces/conversable.dart';
 import 'package:flutterx_example/ui/homepage/components/float_action_button_component.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,12 +15,13 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> implements IScreen {
-  late final FlutterXNotifierList<Widget> _notifierList;
+  late final FlutterXNotifierList<Widget> _notifierList = FlutterXNotifierList<Widget>([]);
+  final Conversable _conversable = Conversable();
 
   @override
   void initState() {
     super.initState();
-    _notifierList = FlutterXNotifierList<Widget>([]);
+    _conversable.addScren("homepage", this);
   }
 
   @override
@@ -42,5 +44,12 @@ class HomePageState extends State<HomePage> implements IScreen {
   @override
   void emitScreen(IComponent component) {
     component.event();
+  }
+
+  @override
+  void receive(String message, value, {IScreen? screen}) {
+    if (message == 'remove') {
+      _notifierList.items.remove(value);
+    }
   }
 }

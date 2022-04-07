@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutterx/domain/interfaces/icomponent.dart';
+import 'package:flutterx_example/domain/implementations/entities/person.dart';
 import 'package:flutterx_example/ui/detailspage/detailspage.dart';
 import 'package:flutterx_example/ui/homepage/homepage.dart';
 
 class CardComponent implements IComponent<HomePageState, InkWell, void> {
 
-  final String _name;
-  final String _age;
-  HomePageState screen;
+  final Person _person;
+  final HomePageState _screen;
 
-  CardComponent(this._name, this._age, this.screen);
+  CardComponent(this._person, this._screen);
 
   @override
   void afterEvent() {
@@ -28,20 +28,20 @@ class CardComponent implements IComponent<HomePageState, InkWell, void> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(_name),
-              Text(_age),
+              Text(_person.name),
+              Text(_person.age),
             ],
           ),
         ),
       ),
-      onTap: () => screen.emitScreen(this),
+      onTap: () => _screen.emitScreen(this),
     );
   }
 
   @override
   void event() {
-    Navigator.of(screen.context).push(
-      MaterialPageRoute(builder: (BuildContext context) => DetailsPage(_name, _age)),
+    Navigator.of(_screen.context).push(
+      MaterialPageRoute(builder: (BuildContext context) => DetailsPage(_person)),
     );
   }
 }

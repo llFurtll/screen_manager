@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterx/domain/interfaces/icomponent.dart';
+import 'package:flutterx_example/domain/implementations/entities/person.dart';
 import 'package:flutterx_example/ui/homepage/homepage.dart';
 
 import 'card_component.dart';
@@ -9,9 +10,9 @@ class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActio
   final TextEditingController _name = TextEditingController();
   final TextEditingController _age = TextEditingController();
 
-  HomePageState screen;
+  final HomePageState _screen;
   
-  FloatActionButtonComponent(this.screen) : super(screen);
+  FloatActionButtonComponent(this._screen) : super(_screen);
 
   @override
   Future<bool> afterEvent() async {
@@ -24,7 +25,7 @@ class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActio
   Future<bool> beforeEvent() async {
     return await showDialog(
       barrierDismissible: false,
-      context: screen.context,
+      context: _screen.context,
       builder: (BuildContext context) {
         return Dialog(
           child: Padding(
@@ -45,14 +46,14 @@ class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActio
                   children: [
                     TextButton(
                       onPressed: () {
-                        Navigator.of(screen.context).pop();
+                        Navigator.of(_screen.context).pop();
                       },
                       child: const Text("To go out"),
                     ),
                     TextButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                        Navigator.of(screen.context).pop(true);
+                          Navigator.of(_screen.context).pop(true);
                         }
                       },
                       child: const Text("Register"),
@@ -104,7 +105,7 @@ class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActio
   @override
   FloatingActionButton constructor() {
     return FloatingActionButton(
-      onPressed: () => screen.emitScreen(this),
+      onPressed: () => _screen.emitScreen(this),
       child: const Icon(Icons.add),
     );
   }
@@ -112,8 +113,9 @@ class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActio
   @override
   Future<bool> event() async {
     if (await beforeEvent()) {
-      screen.getListCards().items.add(
-        CardComponent(_name.text, _age.text, screen).constructor()
+      Person person = Person(name: _name.text, age: _age.text); 
+      _screen.getListCards().items.add(
+        CardComponent(person, _screen).constructor()
       );
       afterEvent();
     }

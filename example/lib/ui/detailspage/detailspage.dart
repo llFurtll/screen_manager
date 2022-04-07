@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutterx/domain/interfaces/conversable.dart';
+import 'package:flutterx_example/domain/implementations/entities/person.dart';
 
 class DetailsPage extends StatelessWidget {
-  final String _name;
-  final String _age;
+  final Person _person;
 
-  const DetailsPage(this._name, this._age, {Key? key}) : super(key: key);
+  final Conversable _conversable = Conversable();
+
+  DetailsPage(this._person, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +17,17 @@ class DetailsPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Name: $_name"),
-            Text("Age: $_age"),
+            Text("Name: ${_person.name}"),
+            Text("Age: ${_person.age}"),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _conversable.callScreen("homepage")!.receive("remove", 0);
+          Navigator.pop(context);
+        },
+        child: const Icon(Icons.delete),
       ),
     );
   }
