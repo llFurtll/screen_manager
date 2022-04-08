@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'iscreen.dart';
+import '../domain/interfaces/iscreen.dart';
 
 class Conversable {
   late HashMap<String, IScreen> _screens;

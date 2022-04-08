@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx/domain/interfaces/conversable.dart';
+import 'package:flutterx/core/conversable.dart';
 import 'package:flutterx_example/domain/implementations/entities/person.dart';
 
 class DetailsPage extends StatelessWidget {

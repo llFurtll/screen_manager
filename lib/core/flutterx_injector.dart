@@ -13,8 +13,8 @@ class FlutterXInjector {
   }
 
   void registerDependencie<T>(T value) {
+    assert(value != null);
     if (!_dependencies.containsValue(value)) {
-      assert(value != null);
       _dependencies["${value.hashCode}"] = value;
     }
   }

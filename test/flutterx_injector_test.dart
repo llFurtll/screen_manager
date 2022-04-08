@@ -21,8 +21,8 @@ void main() {
       });
 
       test('getDependencie', () {
-        expect(injector.getDependencie<ExampleDataSource>(), isInstanceOf());
-        expect(injector.getDependencie<ExampleRepository>(), isInstanceOf());
+        expect(injector.getDependencie<ExampleDataSource>(), isInstanceOf<ExampleDataSource>());
+        expect(injector.getDependencie<ExampleRepository>(), isInstanceOf<ExampleRepository>());
       });
     }
   );

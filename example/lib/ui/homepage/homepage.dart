@@ -4,7 +4,7 @@ import 'package:flutterx/core/flutterx_listenable_builder.dart';
 import 'package:flutterx/core/flutterx_notifier_list.dart';
 import 'package:flutterx/domain/interfaces/icomponent.dart';
 import 'package:flutterx/domain/interfaces/iscreen.dart';
-import 'package:flutterx/domain/interfaces/conversable.dart';
+import 'package:flutterx/core/conversable.dart';
 import 'package:flutterx_example/domain/implementations/entities/person.dart';
 import 'package:flutterx_example/ui/homepage/components/card_component.dart';
 import 'package:flutterx_example/ui/homepage/components/float_action_button_component.dart';
