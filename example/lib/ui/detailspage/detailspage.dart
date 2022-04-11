@@ -1,34 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx/core/conversable.dart';
+import 'package:flutterx/domain/interfaces/icomponent.dart';
+import 'package:flutterx/domain/interfaces/iscreen.dart';
 import 'package:flutterx_example/domain/implementations/entities/person.dart';
+import 'package:flutterx_example/ui/detailspage/components/remove_person_component.dart';
 
-class DetailsPage extends StatelessWidget {
+
+class DetailsPage extends StatefulWidget {
   final Person _person;
 
-  final Conversable _conversable = Conversable();
+  const DetailsPage(this._person, {Key? key}) : super(key: key);
+  
+  @override
+  DetailsPageState createState() => DetailsPageState();
+}
 
-  DetailsPage(this._person, {Key? key}) : super(key: key);
+class DetailsPageState extends State<DetailsPage> implements IScreen {
+
+  late final RemovePersonComponent removePersonComponent;
+
+  @override
+  void initState() {
+    removePersonComponent = RemovePersonComponent(this);
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(widget._person.name),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit),
+            onPressed: () {},
+          )
+        ],
+      ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Name: ${_person.name}"),
-            Text("Age: ${_person.age}"),
+            Text("Name: ${widget._person.name}"),
+            Text("Age: ${widget._person.age}"),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _conversable.callScreen("homepage")!.receive("remove", _person);
-          Navigator.pop(context);
-        },
-        child: const Icon(Icons.delete),
-      ),
+      floatingActionButton: removePersonComponent.constructor(),
     );
+  }
+
+  Person getPerson() {
+    return widget._person;
+  }
+
+  @override
+  void emitScreen(IComponent component) {
+    component.event();
+  }
+
+  @override
+  void receive(String message, value, {IScreen? screen}) {
+    return;
   }
 }

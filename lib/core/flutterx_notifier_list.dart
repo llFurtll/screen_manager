@@ -5,11 +5,9 @@ class FlutterXNotifierList<T> extends ChangeNotifier implements ValueListenable<
   final List<T> _list;
 
   FlutterXNotifierList(this._list);
-
-  FlutterXObservedList<T> get items => FlutterXObservedList(_list, notifyListeners);
    
   @override
-  List<T> get value => _list;
+  List<T> get value => FlutterXObservedList(_list, notifyListeners);
 }
 
 class FlutterXObservedList<T> extends ListBase<T> {

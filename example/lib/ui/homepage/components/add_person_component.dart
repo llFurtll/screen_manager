@@ -3,14 +3,14 @@ import 'package:flutterx/domain/interfaces/icomponent.dart';
 import 'package:flutterx_example/domain/implementations/entities/person.dart';
 import 'package:flutterx_example/ui/homepage/homepage.dart';
 
-class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActionButton, Future<bool>> {
+class AddPersonComponent extends IComponent<HomePageState, FloatingActionButton, Future<bool>> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _age = TextEditingController();
 
   final HomePageState _screen;
   
-  FloatActionButtonComponent(this._screen) : super(_screen);
+  AddPersonComponent(this._screen) : super(_screen);
 
   @override
   Future<bool> afterEvent() async {
@@ -89,6 +89,8 @@ class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActio
               if (value == null || value.isEmpty) {
                 return "Fill in the age";
               }
+
+              return null;
             },
             controller: _age,
             decoration: const InputDecoration(
@@ -112,9 +114,10 @@ class FloatActionButtonComponent extends IComponent<HomePageState, FloatingActio
   Future<bool> event() async {
     if (await beforeEvent()) {
       Person person = Person(name: _name.text, age: _age.text);
-      _screen.getListCards().items.add(person);
-      afterEvent();
+      _screen.getListCards().value.add(person);
     }
+
+    afterEvent();
 
     return false;
   }
