@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutterx/core/conversable.dart';
 import 'package:flutterx/domain/interfaces/icomponent.dart';
 import 'package:flutterx/domain/interfaces/iscreen.dart';
 import 'package:flutterx_example/domain/implementations/entities/person.dart';
+import 'package:flutterx_example/ui/detailspage/components/edit_person_component.dart';
 import 'package:flutterx_example/ui/detailspage/components/remove_person_component.dart';
 
 
+// ignore: must_be_immutable
 class DetailsPage extends StatefulWidget {
-  final Person _person;
+  // ignore: prefer_final_fields
+  Person _person;
 
-  const DetailsPage(this._person, {Key? key}) : super(key: key);
+  DetailsPage(this._person, {Key? key}) : super(key: key);
   
   @override
   DetailsPageState createState() => DetailsPageState();
@@ -17,10 +21,14 @@ class DetailsPage extends StatefulWidget {
 class DetailsPageState extends State<DetailsPage> implements IScreen {
 
   late final RemovePersonComponent removePersonComponent;
+  late final EditPersonComponent editPerson;
+  final Conversable _conversable = Conversable();
 
   @override
   void initState() {
     removePersonComponent = RemovePersonComponent(this);
+    editPerson = EditPersonComponent(this, getPerson());
+    _conversable.addScren("detailspage", this);
     super.initState();
   }
 
@@ -28,22 +36,14 @@ class DetailsPageState extends State<DetailsPage> implements IScreen {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget._person.name),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.edit),
-            onPressed: () {},
-          )
-        ],
-      ),
+      appBar: editPerson.constructor(),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Name: ${widget._person.name}"),
-            Text("Age: ${widget._person.age}"),
+            Text("Name: ${getPerson().name}"),
+            Text("Age: ${getPerson().age}"),
           ],
         ),
       ),

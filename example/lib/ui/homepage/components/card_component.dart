@@ -6,7 +6,8 @@ import 'package:flutterx_example/ui/homepage/homepage.dart';
 
 class CardComponent implements IComponent<HomePageState, InkWell, void> {
 
-  final Person _person;
+  // ignore: prefer_final_fields
+  Person _person;
   final HomePageState _screen;
 
   CardComponent(this._person, this._screen);

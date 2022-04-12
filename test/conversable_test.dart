@@ -27,7 +27,7 @@ void main() {
         expect(() => conversable.addScren("homepage", HomePageState()), returnsNormally);
       });
 
-      test("", () {
+      test("callScreen", () {
         expect(conversable.callScreen("homepage"), isInstanceOf<IScreen>());
       });
     }

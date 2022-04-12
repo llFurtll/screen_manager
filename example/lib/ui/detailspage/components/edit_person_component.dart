@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutterx/core/conversable.dart';
 import 'package:flutterx/domain/interfaces/icomponent.dart';
 import 'package:flutterx_example/domain/implementations/entities/person.dart';
-import 'package:flutterx_example/ui/homepage/homepage.dart';
+import 'package:flutterx_example/ui/detailspage/detailspage.dart';
 
-class AddPersonComponent implements IComponent<HomePageState, FloatingActionButton, Future<bool>> {
+class EditPersonComponent implements IComponent<DetailsPageState, AppBar, Future<bool>> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _age = TextEditingController();
+  final Conversable _conversable = Conversable();
 
-  final HomePageState _screen;
-  
-  AddPersonComponent(this._screen);
+  final DetailsPageState _screen;
+  // ignore: prefer_final_fields
+  Person _person;
+
+  EditPersonComponent(this._screen, this._person);
 
   @override
   Future<bool> afterEvent() async {
@@ -21,6 +25,9 @@ class AddPersonComponent implements IComponent<HomePageState, FloatingActionButt
 
   @override
   Future<bool> beforeEvent() async {
+    _name.text = _person.name;
+    _age.text = _person.age;
+
     return await showDialog(
       barrierDismissible: false,
       context: _screen.context,
@@ -66,6 +73,34 @@ class AddPersonComponent implements IComponent<HomePageState, FloatingActionButt
     ) == null ? false : true;
   }
 
+  @override
+  AppBar constructor() {
+    return AppBar(
+      title: Text(_screen.getPerson().name),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.edit),
+          onPressed: () {
+            _screen.emitScreen(this);
+          },
+        )
+      ],
+    );
+  }
+
+  @override
+  Future<bool> event() async {
+    if (await beforeEvent()) {
+      _person.name = _name.text;
+      _person.age = _age.text;
+      _conversable.callScreen("homepage")!.receive("update", _person);
+    }
+
+    afterEvent();
+
+    return false;
+  }
+
   Form _buildForm() {
     return Form(
       key: _formKey,
@@ -100,25 +135,5 @@ class AddPersonComponent implements IComponent<HomePageState, FloatingActionButt
         ],
       ),
     );
-  }
-
-  @override
-  FloatingActionButton constructor() {
-    return FloatingActionButton(
-      onPressed: () => _screen.emitScreen(this),
-      child: const Icon(Icons.add),
-    );
-  }
-
-  @override
-  Future<bool> event() async {
-    if (await beforeEvent()) {
-      Person person = Person(name: _name.text, age: _age.text);
-      _screen.getListCards().value.add(person);
-    }
-
-    afterEvent();
-
-    return false;
   }
 }

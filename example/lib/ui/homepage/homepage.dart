@@ -32,8 +32,8 @@ class HomePageState extends State<HomePage> implements IScreen {
         valueListenable: _notifierList,
         builder: (context, value, child) => ListView(
           children: [
-            ..._notifierList.value.map((person) =>
-              CardComponent(person, this).constructor())
+            ..._notifierList.value.map((_person) =>
+              CardComponent(_person, this).constructor())
           ],
         ),
       ),
@@ -52,8 +52,14 @@ class HomePageState extends State<HomePage> implements IScreen {
 
   @override
   void receive(String message, value, {IScreen? screen}) {
-    if (message == 'remove') {
-      _notifierList.value.remove(value);
+    switch (message) {
+      case 'remove':
+        _notifierList.value.remove(value);
+        break;
+      case 'update':
+        Person _person = value;
+        int index = _notifierList.value.indexOf(_person);
+        _notifierList.value[index] = _person;
     }
   }
 }
