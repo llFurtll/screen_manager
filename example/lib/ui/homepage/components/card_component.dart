@@ -13,6 +13,11 @@ class CardComponent implements IComponent<HomePageState, InkWell, void> {
   CardComponent(this._person, this._screen);
 
   @override
+  void init() {
+    return; 
+  }
+
+  @override
   void afterEvent() {
   }
 

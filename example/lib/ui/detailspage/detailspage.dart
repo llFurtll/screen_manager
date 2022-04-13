@@ -21,31 +21,37 @@ class DetailsPage extends StatefulWidget {
 class DetailsPageState extends State<DetailsPage> implements IScreen {
 
   late final RemovePersonComponent removePersonComponent;
-  late final EditPersonComponent editPerson;
+  late final EditPersonComponent editPersonComponent;
   final Conversable _conversable = Conversable();
+  late final ValueNotifier<Person> _notifierPerson;
 
   @override
   void initState() {
     removePersonComponent = RemovePersonComponent(this);
-    editPerson = EditPersonComponent(this, getPerson());
+    editPersonComponent = EditPersonComponent(this, widget._person);
     _conversable.addScren("detailspage", this);
+    _notifierPerson = ValueNotifier(widget._person);
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: editPerson.constructor(),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Name: ${getPerson().name}"),
-            Text("Age: ${getPerson().age}"),
-          ],
-        ),
+      appBar: editPersonComponent.constructor(),
+      body: ValueListenableBuilder(
+        valueListenable: _notifierPerson,
+        builder: (BuildContext context, Person value, Widget? widget) {
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Name: ${_notifierPerson.value.name}"),
+                Text("Age: ${_notifierPerson.value.age}"),
+              ],
+            ),
+          );
+        },
       ),
       floatingActionButton: removePersonComponent.constructor(),
     );
@@ -62,6 +68,14 @@ class DetailsPageState extends State<DetailsPage> implements IScreen {
 
   @override
   void receive(String message, value, {IScreen? screen}) {
-    return;
+    switch (message) {
+      case 'update':
+        Person _newPerson = Person(name: value.name, age: value.age);
+        _notifierPerson.value = _newPerson;
+    }
+  }
+
+  ValueNotifier<Person> getNotififier() {
+    return _notifierPerson;
   }
 }

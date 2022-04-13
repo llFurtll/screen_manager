@@ -9,6 +9,11 @@ class RemovePersonComponent implements IComponent<DetailsPageState, FloatingActi
   RemovePersonComponent(this._screen);
 
   final Conversable _conversable = Conversable();
+
+  @override
+  void init() {
+    return;
+  }
   
   @override
   void afterEvent() {
