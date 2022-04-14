@@ -11,10 +11,12 @@ class ModalPersonComponent<T extends State> implements IComponent<AnyScreen, voi
 
   final T _screen;
   Person _person = Person(age: "", name: "");
+  bool isEdit = false;
 
   ModalPersonComponent(this._screen, [Person? _person]) {
     if (_person != null) {
       this._person = _person;
+      isEdit = true;
     }
     init();
   }
@@ -61,7 +63,7 @@ class ModalPersonComponent<T extends State> implements IComponent<AnyScreen, voi
                           Navigator.of(_screen.context).pop(true);
                         }
                       },
-                      child: const Text("Register"),
+                      child: Text((isEdit ? "Update" : "Register")),
                     ),
                   ],
                 ),
