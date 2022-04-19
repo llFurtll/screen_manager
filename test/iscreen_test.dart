@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import '../component/icomponent_test.dart';
+import 'component/icomponent_test.dart';
 import 'package:flutterx/infra/implementations/any_screen.dart';
 
 void main() {
