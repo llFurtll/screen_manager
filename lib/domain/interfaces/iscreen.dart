@@ -1,11 +1,7 @@
 import 'icomponent.dart';
 
 abstract class IScreen {
-  void emitScreen(IComponent component) {
-    component.event();
-  }
+  void emitScreen(IComponent component);
 
-  void receive(String message, dynamic value, {IScreen? screen}) {
-    return;
-  }
+  void receive(String message, dynamic value, {IScreen? screen});
 }
