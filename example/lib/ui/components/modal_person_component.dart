@@ -52,12 +52,14 @@ class ModalPersonComponent<T extends State> implements IComponent<AnyScreen, voi
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
+                      key: const Key('buttonClose'),
                       onPressed: () {
                         Navigator.of(_screen.context).pop();
                       },
                       child: const Text("To go out"),
                     ),
                     TextButton(
+                      key: const Key('buttonSave'),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           Navigator.of(_screen.context).pop(true);
@@ -100,6 +102,7 @@ class ModalPersonComponent<T extends State> implements IComponent<AnyScreen, voi
       child: Column(
         children: [
           TextFormField(
+            key: const Key('textName'),
             validator: (String? value) {
               if (value == null || value.isEmpty) {
                 return "Fill in the name";
@@ -113,6 +116,7 @@ class ModalPersonComponent<T extends State> implements IComponent<AnyScreen, voi
             ),
           ),
           TextFormField(
+            key: const Key('textAge'),
             validator: (String? value) {
               if (value == null || value.isEmpty) {
                 return "Fill in the age";

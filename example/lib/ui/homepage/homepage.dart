@@ -31,6 +31,7 @@ class HomePageState extends State<HomePage> implements IScreen {
       body: ValueListenableBuilder(
         valueListenable: _notifierList,
         builder: (context, value, child) => ListView(
+          key: const Key('listHome'),
           children: [
             ..._notifierList.value.map((_person) =>
               CardComponent(_person, this).constructor())
