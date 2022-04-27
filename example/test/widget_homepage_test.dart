@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutterx_example/ui/detailspage/detailspage.dart';
 import 'package:flutterx_example/ui/homepage/homepage.dart';
+import 'package:mockito/mockito.dart';
+
+class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 void main() {
+  late MockNavigatorObserver mockNavigatorObserver;
+
+  setUp(() {
+    mockNavigatorObserver = MockNavigatorObserver();
+  });
 
   Widget constructorWidget({Widget? child}) {
     return MaterialApp(
       home: child,
+      navigatorObservers: [mockNavigatorObserver],
     );
   }
 
@@ -54,5 +64,14 @@ void main() {
      * 7° Checks if a card has been added to the list
      */
     expect(find.byType(Card), findsOneWidget);
+
+    /**
+     * 8° Go to another screen
+     */
+    await tester.tap(find.byType(Card));
+
+    // verify(mockNavigatorObserver.didPush(any, any));
+
+    // expect(find.byType(DetailsPage), findsOneWidget);
   });
 }
