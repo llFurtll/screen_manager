@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutterx/core/flutterx_notifier_list.dart';
-import 'package:flutterx/domain/interfaces/icomponent.dart';
-import 'package:flutterx/domain/interfaces/iscreen.dart';
-import 'package:flutterx/core/conversable.dart';
-import 'package:flutterx_example/domain/implementations/entities/person.dart';
-import 'package:flutterx_example/ui/homepage/components/card_component.dart';
-import 'package:flutterx_example/ui/homepage/components/add_person_component.dart';
+import 'package:compmanager/core/compmanager_notifier_list.dart';
+import 'package:compmanager/domain/interfaces/icomponent.dart';
+import 'package:compmanager/domain/interfaces/iscreen.dart';
+import 'package:compmanager/core/conversable.dart';
+
+import '../../domain/implementations/entities/person.dart';
+import 'components/add_person_component.dart';
+import 'components/card_component.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> implements IScreen {
-  final FlutterXNotifierList<Person> _notifierList = FlutterXNotifierList<Person>([]);
+  final CompManagerNotifierList<Person> _notifierList = CompManagerNotifierList<Person>([]);
   final Conversable _conversable = Conversable();
 
   @override
@@ -42,7 +43,7 @@ class HomePageState extends State<HomePage> implements IScreen {
     );
   }
 
-  FlutterXNotifierList<Person> getListCards() {
+  CompManagerNotifierList<Person> getListCards() {
     return _notifierList;
   }
 

@@ -1,6 +1,6 @@
-# flutterx_example
+# compmanager_example
 
-Demonstrates how to use the flutterx plugin.
+Demonstrates how to use the compmanager plugin.
 
 ## Getting Started
 

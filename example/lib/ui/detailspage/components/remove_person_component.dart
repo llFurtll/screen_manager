@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx/core/conversable.dart';
-import 'package:flutterx/domain/interfaces/icomponent.dart';
-import 'package:flutterx_example/ui/detailspage/detailspage.dart';
+import 'package:compmanager/core/conversable.dart';
+import 'package:compmanager/domain/interfaces/icomponent.dart';
+
+import '../detailspage.dart';
 
 class RemovePersonComponent implements IComponent<DetailsPageState, FloatingActionButton, void> {
   final DetailsPageState _screen;

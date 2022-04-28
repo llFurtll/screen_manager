@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutterx/domain/interfaces/icomponent.dart';
-import 'package:flutterx/infra/implementations/any_screen.dart';
+import 'package:compmanager/domain/interfaces/icomponent.dart';
+import 'package:compmanager/infra/implementations/any_screen.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 

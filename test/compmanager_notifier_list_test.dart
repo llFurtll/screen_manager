@@ -1,16 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutterx/core/flutterx_notifier_list.dart';
+import 'package:compmanager/core/compmanager_notifier_list.dart';
 void main() {
   late List<String?> tests;
-  late FlutterXNotifierList<String?> notifierList;
+  late CompManagerNotifierList<String?> notifierList;
 
   setUp(() {
     tests = ["Test"];
-    notifierList = FlutterXNotifierList(tests);
+    notifierList = CompManagerNotifierList(tests);
   });
 
-  group("Tests in FlutterXNotifierList", () {
-    test("Test get value FlutterXNotififerList", () {
+  group("Tests in CompManagerNotifierList", () {
+    test("Test get value CompManagerNotifierList", () {
       List<String?> response = List.from(notifierList.value);
       expect(notifierList.value, response);
     });

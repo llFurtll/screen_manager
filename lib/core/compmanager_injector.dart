@@ -1,14 +1,14 @@
 import 'dart:collection';
 
-class FlutterXInjector {
+class CompManagerInjector {
 
   late HashMap<String, dynamic> _dependencies;
 
-  static final FlutterXInjector _instance = FlutterXInjector._internal();
+  static final CompManagerInjector _instance = CompManagerInjector._internal();
 
-  factory FlutterXInjector() => _instance;
+  factory CompManagerInjector() => _instance;
 
-  FlutterXInjector._internal() {
+  CompManagerInjector._internal() {
     _dependencies = HashMap();
   }
 

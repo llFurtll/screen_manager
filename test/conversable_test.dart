@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutterx/core/conversable.dart';
-import 'package:flutterx/domain/interfaces/icomponent.dart';
-import 'package:flutterx/domain/interfaces/iscreen.dart';
+import 'package:compmanager/core/conversable.dart';
+import 'package:compmanager/domain/interfaces/icomponent.dart';
+import 'package:compmanager/domain/interfaces/iscreen.dart';
 
 class HomePageState implements IScreen {
   @override

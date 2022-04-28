@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx/domain/interfaces/icomponent.dart';
-import 'package:flutterx_example/domain/implementations/entities/person.dart';
-import 'package:flutterx_example/ui/components/modal_person_component.dart';
-import 'package:flutterx_example/ui/homepage/homepage.dart';
+import 'package:compmanager/domain/interfaces/icomponent.dart';
+
+import '../../../domain/implementations/entities/person.dart';
+import '../../components/modal_person_component.dart';
+import '../homepage.dart';
 
 class AddPersonComponent implements IComponent<HomePageState, FloatingActionButton, Future<bool>> {
   final HomePageState _screen;

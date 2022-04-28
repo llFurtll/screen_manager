@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx/domain/interfaces/icomponent.dart';
-import 'package:flutterx_example/domain/implementations/entities/person.dart';
-import 'package:flutterx_example/ui/detailspage/detailspage.dart';
-import 'package:flutterx_example/ui/homepage/homepage.dart';
+import 'package:compmanager/domain/interfaces/icomponent.dart';
+
+import '../../../domain/implementations/entities/person.dart';
+import '../../detailspage/detailspage.dart';
+import '../homepage.dart';
 
 class CardComponent implements IComponent<HomePageState, InkWell, void> {
 

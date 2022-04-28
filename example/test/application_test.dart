@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutterx_example/domain/implementations/entities/person.dart';
-import 'package:flutterx_example/ui/detailspage/detailspage.dart';
-import 'package:flutterx_example/ui/homepage/homepage.dart';
+
+import 'package:compmanager_example/domain/implementations/entities/person.dart';
+import 'package:compmanager_example/ui/homepage/homepage.dart';
+import 'package:compmanager_example/ui/detailspage/detailspage.dart';
 
 void main() {
   Widget constructorWidget({Widget? child}) {

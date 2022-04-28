@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:compmanager/domain/interfaces/icomponent.dart';
+import 'package:compmanager/infra/implementations/any_screen.dart';
 
-import 'package:flutterx/domain/interfaces/icomponent.dart';
-import 'package:flutterx/infra/implementations/any_screen.dart';
-import 'package:flutterx_example/domain/implementations/entities/person.dart';
+import '../../domain/implementations/entities/person.dart';
 
 class ModalPersonComponent<T extends State> implements IComponent<AnyScreen, void, Future<bool>> {
   final GlobalKey<FormState> _formKey = GlobalKey();

@@ -1,20 +1,20 @@
 import 'dart:collection';
 import 'package:flutter/foundation.dart';
 
-class FlutterXNotifierList<T> extends ChangeNotifier implements ValueListenable<List<T>> {
+class CompManagerNotifierList<T> extends ChangeNotifier implements ValueListenable<List<T>> {
   final List<T> _list;
 
-  FlutterXNotifierList(this._list);
+  CompManagerNotifierList(this._list);
    
   @override
-  List<T> get value => FlutterXObservedList(_list, notifyListeners);
+  List<T> get value => CompManagerObservedList(_list, notifyListeners);
 }
 
-class FlutterXObservedList<T> extends ListBase<T> {
+class CompManagerObservedList<T> extends ListBase<T> {
   final List<T> _list;
   final void Function() _notify;
 
-  FlutterXObservedList(this._list, this._notify);
+  CompManagerObservedList(this._list, this._notify);
 
   @override
   int get length => _list.length;

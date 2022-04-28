@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutterx/core/flutterx_injector.dart';
+import 'package:compmanager/core/compmanager_injector.dart';
 
 class ExampleDataSource {}
 
@@ -8,12 +8,12 @@ class ExampleRepository {
 }
 
 void main() {
-  late final FlutterXInjector injector;
+  late final CompManagerInjector injector;
 
   group(
-    "Testing FlutterXInjector",
+    "Testing CompManagerInjector",
     () {
-      injector = FlutterXInjector();
+      injector = CompManagerInjector();
 
       test('registerDependencie', () {
         expect(() => injector.registerDependencie(ExampleDataSource()), returnsNormally);

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutterx/core/conversable.dart';
-import 'package:flutterx/domain/interfaces/icomponent.dart';
-import 'package:flutterx/domain/interfaces/iscreen.dart';
-import 'package:flutterx_example/domain/implementations/entities/person.dart';
-import 'package:flutterx_example/ui/detailspage/components/edit_person_component.dart';
-import 'package:flutterx_example/ui/detailspage/components/remove_person_component.dart';
+import 'package:compmanager/core/conversable.dart';
+import 'package:compmanager/domain/interfaces/iscreen.dart';
+import 'package:compmanager/domain/interfaces/icomponent.dart';
+
+import '../../domain/implementations/entities/person.dart';
+import 'components/edit_person_component.dart';
+import 'components/remove_person_component.dart';
 
 
 // ignore: must_be_immutable
