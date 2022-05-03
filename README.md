@@ -1,18 +1,11 @@
-# compmanager
+# Compmanager
 
-A new flutter plugin project.
+## Why?
+The initiative to create this plugin was because I didn't like the way we create components in <b>Flutter</b>. <br>
+Every time we create a separate file to put all the business rules of a certain component it was usually necessary to pass functions by parameters for that component to perform the necessary action in our screen, so I thought of a way to manage components in our project, where all of them will follow a pattern defined in the <b>Compmanager</b>, thus facilitating the communication between the component and the screen. <br>
+The main focus of the <b>Compmanager</b> is basically to create components for a certain screen and have access to the necessary attributes within the screen to make the changes you want. Of course, a particular component that is generally reusable can also be created using compmanager.
 
-## Getting Started
-
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-The plugin project was generated without specifying the `--platforms` flag, no platforms are currently supported.
-To add platforms, run `flutter create -t plugin --platforms <platforms> .` under the same
-directory. You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
+## How to use?
+Well, in addition to the example project that is here in the repository I will create one more basic example for you to see what idea I propose. <br>
+But first I want to explain that the creation of the <b>Compmanager</b> was also thought a little using <b>Object Orientation</b>.
+Well, as an example, I will recreate the famous count screen that comes in the standard Flutter documentation using <b>Compmanager</b>.
