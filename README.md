@@ -9,3 +9,7 @@ The main focus of the <b>Compmanager</b> is basically to create components for a
 Well, in addition to the example project that is here in the repository I will create one more basic example for you to see what idea I propose. <br>
 But first I want to explain that the creation of the <b>Compmanager</b> was also thought a little using <b>Object Orientation</b>.
 Well, as an example, I will recreate the famous count screen that comes in the standard Flutter documentation using <b>Compmanager</b>.
+
+With your project created let's start making changes to the main.dart file. <br>
+First remove all the code that is in the file.
+After that we will configure pubspec.yaml by adding the Compmanager dependency.
