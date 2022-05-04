@@ -5,7 +5,7 @@ The initiative to create this plugin was because I didn't like the way we create
 <br><br>
 Every time we create a separate file to put all the business rules of a certain component it was usually necessary to pass functions by parameters for that component to perform the necessary action in our screen, so I thought of a way to manage components in our project, where all of them will follow a pattern defined in the <b>Compmanager</b>, thus facilitating the communication between the component and the screen.
 <br><br>
-The main focus of the <b>Compmanager</b> is basically to create components for a certain screen and have access to the necessary attributes within the screen to make the changes you want. Of course, a particular component that is generally reusable can also be created using compmanager.
+The main focus of the <b>Compmanager</b> is basically to create components for a certain screen and have access to the necessary attributes within the screen to make the changes you want. Of course, a particular component that is generally reusable can also be created using <b>Compmanager</b>.
 
 ## How to use?
 Well, in addition to the example project that is here in the repository I will create one more basic example for you to see what idea I propose.
