@@ -12,8 +12,6 @@ Well, in addition to the example project that is here in the repository I will c
 <br><br>
 But first I want to explain that the creation of the <b>Compmanager</b> was also thought a little using <b>Object Orientation</b>.
 Well, as an example, I will recreate the famous count screen that comes in the standard Flutter documentation using <b>Compmanager</b>.
-
-First remove all the code that is in the file.
 <br><br>
 After that we will configure pubspec.yaml by adding the Compmanager dependency.
 <br>
