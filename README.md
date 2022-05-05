@@ -36,14 +36,14 @@ You can notice that as we used a private attribute on the screen, we created a g
 ## Creating the component
 Now we are going to create our component, so create a new file with the name you want and use the following code.
 <br>
-![image](https://user-images.githubusercontent.com/48370450/166605687-ad8ccce7-a4a5-46a5-936b-b34657170163.png)
+![image](https://user-images.githubusercontent.com/48370450/167038227-aa234164-0b27-48ab-99ca-913caba54f40.png)
 <br><br>
 It is important to understand that as we need to make changes to the screen, we will pass the same via the constructor.
 <br><br>
 In the component you can notice that it implements the IComponent, at this moment it is passed which screen you will use this component, in case you are going to use it in several screens you can pass AnyScreen, after it is placed the Widget type that it will be used and in the last one the return type of the methods. For example, if by chance you want an action on your screen to have a Dialog first indicating if it wants to do a certain action, you can pass a Future instead of void, so all methods will be returned as Future.
 <br><br>
 We also have the init method, this method is for initializing properties of the component if it has them, use it in the constructor if you need to. <br>
-The afterEvent and beforeEvent methods are basically used to perform actions before and after the event, if you need to implement your rule in these methods and call them together in the event method, this way you can perform an action before and after the desired change in the screen.
+The afterEvent and beforeEvent methods are basically used to perform actions before and after the event, in case you need to implement your rule in these methods and call them together in the event method, this way you can perform an action before and after the change on the screen.
 <br><br>
 If you are not going to use any of the methods, just create a reusable component on the screens without changing any information, just pass void and leave the methods with return.
 
