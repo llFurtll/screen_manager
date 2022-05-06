@@ -1,5 +1,7 @@
 # Compmanager
 
+<a href="https://www.buymeacoffee.com/danielmelonari" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
 ## Why?
 The initiative to create this plugin was because I didn't like the way we create components in <b>Flutter</b>.
 <br><br>
@@ -57,3 +59,75 @@ When you run the project you will see that the counter is running correctly.
 ![image](https://user-images.githubusercontent.com/48370450/166608436-722bc210-32cd-490d-915c-31d0a1adef1a.png)
 
 ## Dependency injection and the Conversable class
+Compmanager also has a way for you to store your project's dependencies. It uses a Singleton for this, and after that you can access this information anywhere in your project.
+<br><br>
+To use this feature is very simple, first create a file in your project root directory with the name you want. Below is an example.
+![image](https://user-images.githubusercontent.com/48370450/167041551-81f442b8-7405-4397-8d4b-d9f63f840753.png)
+<br><br>
+Now, before running the runApp in main, enter the method you just created and register its dependencies.
+<br>
+![image](https://user-images.githubusercontent.com/48370450/167041741-bfeac45d-eba9-4a83-8267-b8e56dd9e4c4.png)
+<br><br>
+To recover the dependency is very simple, follow the example below.
+First in our class we instantiate our Singleton.
+<br>
+![image](https://user-images.githubusercontent.com/48370450/167041931-74decb46-5119-4950-9b51-fdff858e6e0a.png)
+<br><br>
+After this process, just use the getDependencie() method.
+<br>
+![image](https://user-images.githubusercontent.com/48370450/167045679-7577caec-7b34-428f-a5b6-cd71c1c1578a.png)
+<br><br>
+Result:
+<br>
+![image](https://user-images.githubusercontent.com/48370450/167045663-dbed76b1-8f3c-4907-8724-e59d08013fb8.png)
+<br><br>
+The Conversable class is used to send information from one screen to another, for example a button on one screen will update something on another screen, so using this class you will be able to do it, let's go to a basic example.
+<br><br>
+Following our project, let's create a second screen where it will have a button that, when clicked, will call the main screen asking it to increase the count, let's go.
+<br><br>
+First let's create the second screen.
+<br>
+![image](https://user-images.githubusercontent.com/48370450/167047362-22974c5a-02fd-427c-a912-776b45e33006.png)
+<br><br>
+Creation of the button to go to the second screen.
+![image](https://user-images.githubusercontent.com/48370450/167048584-5bb86c45-bd67-4283-8f7e-6edad26215a7.png)
+<br><br>
+Now we need to add our screen in Conversable to indicate that this screen can be called from elsewhere in the project.
+![image](https://user-images.githubusercontent.com/48370450/167047773-c86a1baa-e508-4c96-9db1-d1a71a9d147a.png)
+<br><br>
+Basically we instantiate our Conversable and add the screen by the constructor, if it is a Stateful use the initState method. Thus, we pass the screen identification, in the case of the "main" example, and the reference of the screen itself.
+<br><br>
+Now, on the second screen, we will program the button to send the request to main when clicked.
+![image](https://user-images.githubusercontent.com/48370450/167048001-c306a36e-c259-4d4b-be87-02e9879dc710.png)
+<br><br>
+As you can see we instantiate our Conversable class, in onPressed we call the callScreen method passing the identifier and in that we call the screen's receive method and then we go back to the initial screen.
+<br><br>
+Finally, let's implement the receive method of the splash screen.
+<br>
+![image](https://user-images.githubusercontent.com/48370450/167048228-6b4bccd7-13c5-4f34-a742-95920653c6c0.png)
+<br><br>
+We use a switch to identify which type of message, if it is an increment we add to our variable. The third argument if you want to use it is to identify which screen made the call.
+<br><br>
+Remember to hot restart the project
+<br><br>
+Before:
+<br>
+![image](https://user-images.githubusercontent.com/48370450/167048759-bd10f48f-f6f6-4d30-b82d-bb4c5aa8f544.png)
+<br><br>
+After:
+<br>
+![image](https://user-images.githubusercontent.com/48370450/167048786-d6fb4188-f85a-47b2-b4a1-1308bea83307.png)
+<br><br>
+Any questions or suggestions get in touch :).
+
+### :man:  Dev
+<a href="https://www.linkedin.com/in/daniel-melonari-5413a7197/" target="_blank">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/48370450?v=4" width="100px;" height="100px" alt=""/>
+ <br />
+ <sub><b>Daniel Melonari</b></sub></a> <a href="https://www.linkedin.com/in/daniel-melonari-5413a7197/" title="Linkedin" target="_blank">🚀</a>
+
+
+Done with ❤️ by Daniel Melonari 👋🏽 Contact!
+
+[![Linkedin Badge](https://img.shields.io/badge/-Daniel-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/daniel-melonari-5413a7197/)](https://www.linkedin.com/in/daniel-melonari-5413a7197/) 
+[![Gmail Badge](https://img.shields.io/badge/-danielmelonari@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:danielmelonari@gmail.com)](mailto:danielmelonari@gmail.com)
