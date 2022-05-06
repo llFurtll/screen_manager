@@ -62,6 +62,7 @@ When you run the project you will see that the counter is running correctly.
 Compmanager also has a way for you to store your project's dependencies. It uses a Singleton for this, and after that you can access this information anywhere in your project.
 <br><br>
 To use this feature is very simple, first create a file in your project root directory with the name you want. Below is an example.
+<br>
 ![image](https://user-images.githubusercontent.com/48370450/167041551-81f442b8-7405-4397-8d4b-d9f63f840753.png)
 <br><br>
 Now, before running the runApp in main, enter the method you just created and register its dependencies.
