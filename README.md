@@ -94,6 +94,7 @@ Creation of the button to go to the second screen.
 ![image](https://user-images.githubusercontent.com/48370450/167048584-5bb86c45-bd67-4283-8f7e-6edad26215a7.png)
 <br><br>
 Now we need to add our screen in Conversable to indicate that this screen can be called from elsewhere in the project.
+<br>
 ![image](https://user-images.githubusercontent.com/48370450/167047773-c86a1baa-e508-4c96-9db1-d1a71a9d147a.png)
 <br><br>
 Basically we instantiate our Conversable and add the screen by the constructor, if it is a Stateful use the initState method. Thus, we pass the screen identification, in the case of the "main" example, and the reference of the screen itself.
