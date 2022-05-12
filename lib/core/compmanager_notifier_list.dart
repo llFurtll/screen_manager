@@ -7,14 +7,14 @@ class CompManagerNotifierList<T> extends ChangeNotifier implements ValueListenab
   CompManagerNotifierList(this._list);
    
   @override
-  List<T> get value => CompManagerObservedList(_list, notifyListeners);
+  List<T> get value => _CompManagerObservedList(_list, notifyListeners);
 }
 
-class CompManagerObservedList<T> extends ListBase<T> {
+class _CompManagerObservedList<T> extends ListBase<T> {
   final List<T> _list;
   final void Function() _notify;
 
-  CompManagerObservedList(this._list, this._notify);
+  _CompManagerObservedList(this._list, this._notify);
 
   @override
   int get length => _list.length;
@@ -60,5 +60,11 @@ class CompManagerObservedList<T> extends ListBase<T> {
     final value = _list.removeAt(index);
     _notify();
     return value;
+  }
+
+  @override
+  void clear() {
+    _list.length = 0;
+    _notify();
   }
 }

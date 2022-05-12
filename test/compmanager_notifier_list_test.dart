@@ -69,5 +69,12 @@ void main() {
       notifierList.value.removeAt(0);
       expect(notifierList.value, response);
     });
+
+    test("clear", () {
+      List<String?> response = List.from(notifierList.value);
+      response.clear();
+      notifierList.value.clear();
+      expect(notifierList.value.length, response.length);
+    });
   });
 }
