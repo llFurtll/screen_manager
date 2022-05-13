@@ -3,6 +3,9 @@ import '../../domain/interfaces/iscreen.dart';
 
 class AnyScreen implements IScreen {
   @override
+  List<IComponent> listComponents = [];
+
+  @override
   void emitScreen(IComponent component) {
     return;
   }
@@ -10,5 +13,15 @@ class AnyScreen implements IScreen {
   @override
   void receive(String message, value, {IScreen? screen}) {
     return;
+  }
+
+  @override
+  IComponent getComponent(IComponent component) {
+    return listComponents.firstWhere((element) => element == component);
+  }
+
+  @override
+  void addComponent(IComponent component) {
+    listComponents.add(component);
   }
 }

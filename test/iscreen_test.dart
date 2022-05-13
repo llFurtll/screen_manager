@@ -1,7 +1,9 @@
+import 'package:compmanager/domain/interfaces/icomponent.dart';
+import 'package:compmanager/infra/implementations/any_screen.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 
 import 'component/icomponent_test.dart';
-import 'package:compmanager/infra/implementations/any_screen.dart';
 
 void main() {
   late AnyScreen screen;
@@ -19,6 +21,16 @@ void main() {
 
     test("receive", () {
       expect(() => screen.receive("test", 0), returnsNormally);
+    });
+
+    test("addComponent", () {
+      expect(() => screen.addComponent(fakeComponent), returnsNormally);
+    });
+
+    test("getComponent", () {
+      screen.addComponent(fakeComponent);
+      IComponent component = screen.getComponent(fakeComponent);
+      assert(component == fakeComponent);
     });
   });
 }

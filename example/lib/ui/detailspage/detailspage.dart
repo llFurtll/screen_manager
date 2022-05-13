@@ -20,6 +20,8 @@ class DetailsPage extends StatefulWidget {
 }
 
 class DetailsPageState extends State<DetailsPage> implements IScreen {
+  @override
+  List<IComponent<IScreen, dynamic, dynamic>> listComponents = [];
 
   late final RemovePersonComponent removePersonComponent;
   late final EditPersonComponent editPersonComponent;
@@ -74,6 +76,16 @@ class DetailsPageState extends State<DetailsPage> implements IScreen {
         Person _newPerson = Person(name: value.name, age: value.age);
         _notifierPerson.value = _newPerson;
     }
+  }
+
+   @override
+  void addComponent(IComponent component) {
+    listComponents.add(component);
+  }
+
+  @override
+  IComponent getComponent(IComponent component) {
+    return listComponents.firstWhere((element) => element == component);
   }
 
   ValueNotifier<Person> getNotififier() {

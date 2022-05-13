@@ -17,6 +17,9 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> implements IScreen {
+  @override
+  List<IComponent<IScreen, dynamic, dynamic>> listComponents = [];
+
   final CompManagerNotifierList<Person> _notifierList = CompManagerNotifierList<Person>([]);
   final Conversable _conversable = Conversable();
 
@@ -63,5 +66,15 @@ class HomePageState extends State<HomePage> implements IScreen {
         int index = _notifierList.value.indexOf(_person);
         _notifierList.value[index] = _person;
     }
+  }
+
+  @override
+  void addComponent(IComponent component) {
+    listComponents.add(component);
+  }
+
+  @override
+  IComponent getComponent(IComponent component) {
+    return listComponents.firstWhere((element) => element == component);
   }
 }

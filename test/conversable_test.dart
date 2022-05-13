@@ -5,6 +5,9 @@ import 'package:compmanager/domain/interfaces/iscreen.dart';
 
 class HomePageState implements IScreen {
   @override
+  List<IComponent<IScreen, dynamic, dynamic>> listComponents = [];
+
+  @override
   void emitScreen(IComponent<IScreen, dynamic, dynamic> component) {
     return;
   }
@@ -12,6 +15,16 @@ class HomePageState implements IScreen {
   @override
   void receive(String message, value, {IScreen? screen}) {
     return;
+  }
+
+  @override
+  void addComponent(IComponent<IScreen, dynamic, dynamic> component) {
+    return;
+  }
+
+  @override
+  IComponent getComponent(IComponent component) {
+    return listComponents.firstWhere((element) => element == component);
   }
 }
 
