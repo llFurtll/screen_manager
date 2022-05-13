@@ -16,8 +16,8 @@ class AnyScreen implements IScreen {
   }
 
   @override
-  IComponent getComponent(IComponent component) {
-    return listComponents.firstWhere((element) => element == component);
+  IComponent getComponent(Type type) {
+    return listComponents.firstWhere((element) => element.runtimeType == type);
   }
 
   @override

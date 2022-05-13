@@ -29,7 +29,7 @@ void main() {
 
     test("getComponent", () {
       screen.addComponent(fakeComponent);
-      IComponent component = screen.getComponent(fakeComponent);
+      IComponent component = screen.getComponent(fakeComponent.runtimeType);
       assert(component == fakeComponent);
     });
   });

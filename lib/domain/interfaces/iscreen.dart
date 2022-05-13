@@ -9,5 +9,5 @@ abstract class IScreen {
 
   void addComponent(IComponent component);
 
-  IComponent getComponent(IComponent component);
+  IComponent getComponent(Type type);
 }
