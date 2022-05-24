@@ -96,6 +96,12 @@ class ModalPersonComponent<T extends State> implements IComponent<AnyScreen, voi
     return;
   }
 
+  @override
+  void dispose() {
+    _name.dispose();
+    _age.dispose();
+  }
+
   Form _buildForm() {
     return Form(
       key: _formKey,

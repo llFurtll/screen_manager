@@ -23,10 +23,19 @@ class HomePageState extends State<HomePage> implements IScreen {
   final CompManagerNotifierList<Person> _notifierList = CompManagerNotifierList<Person>([]);
   final Conversable _conversable = Conversable();
 
+  late final AddPersonComponent _addPersonComponent;
+
   @override
   void initState() {
     super.initState();
     _conversable.addScren("homepage", this);
+    _addPersonComponent = AddPersonComponent(this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _addPersonComponent.dispose();
   }
 
   @override
@@ -42,7 +51,7 @@ class HomePageState extends State<HomePage> implements IScreen {
           ],
         ),
       ),
-      floatingActionButton: AddPersonComponent(this).constructor(),
+      floatingActionButton: _addPersonComponent.constructor(),
     );
   }
 

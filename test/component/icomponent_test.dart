@@ -23,6 +23,11 @@ void main() {
       verify(fakeComponent.init()).called(1);
     });
 
+    test("dispose", () {
+      expect(() => fakeComponent.dispose(), returnsNormally);
+      verify(fakeComponent.dispose()).called(1);
+    });
+
     test("constructor", () {
       when(fakeComponent.constructor()).thenReturn(Container());
       expect(fakeComponent.constructor(), isInstanceOf());

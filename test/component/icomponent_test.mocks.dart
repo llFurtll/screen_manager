@@ -35,6 +35,9 @@ class MockFakeComponent extends _i1.Mock implements _i3.FakeComponent {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
   _i2.Container constructor() =>
       (super.noSuchMethod(Invocation.method(#constructor, []),
           returnValue: _FakeContainer_0()) as _i2.Container);

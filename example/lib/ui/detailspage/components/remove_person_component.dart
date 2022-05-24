@@ -15,7 +15,12 @@ class RemovePersonComponent implements IComponent<DetailsPageState, FloatingActi
   void init() {
     return;
   }
-  
+
+  @override
+  void dispose() {
+    return;
+  }
+
   @override
   void afterEvent() {
     return;

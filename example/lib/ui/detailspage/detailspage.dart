@@ -38,6 +38,12 @@ class DetailsPageState extends State<DetailsPage> implements IScreen {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    editPersonComponent.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: editPersonComponent.constructor(),
@@ -84,8 +90,8 @@ class DetailsPageState extends State<DetailsPage> implements IScreen {
   }
 
   @override
-  IComponent getComponent(IComponent component) {
-    return listComponents.firstWhere((element) => element == component);
+  IComponent getComponent(Type type) {
+    return listComponents.firstWhere((element) => element.runtimeType == type.runtimeType);
   }
 
   ValueNotifier<Person> getNotififier() {

@@ -21,6 +21,12 @@ class AddPersonComponent implements IComponent<HomePageState, FloatingActionButt
   }
 
   @override
+  void dispose() {
+    _modalPersonComponent.dispose();
+    return;
+  }
+
+  @override
   Future<bool> afterEvent() async {
     return false;
   }

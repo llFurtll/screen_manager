@@ -19,6 +19,11 @@ class CardComponent implements IComponent<HomePageState, InkWell, void> {
   }
 
   @override
+  void dispose() {
+    return; 
+  }
+
+  @override
   void afterEvent() {
   }
 

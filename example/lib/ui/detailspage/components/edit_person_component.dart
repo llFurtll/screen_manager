@@ -24,6 +24,12 @@ class EditPersonComponent implements IComponent<DetailsPageState, AppBar, Future
   }
 
   @override
+  void dispose() {
+    _modalPersonComponent.dispose();
+    return;
+  }
+
+  @override
   Future<bool> afterEvent() async {
     return false;
   }
