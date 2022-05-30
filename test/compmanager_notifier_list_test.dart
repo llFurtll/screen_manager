@@ -76,5 +76,12 @@ void main() {
       notifierList.value.clear();
       expect(notifierList.value.length, response.length);
     });
+
+    test("addAll", () {
+      List<String?> response = List.from(notifierList.value);
+      response.addAll(List.generate(10, (index) => "TEST"));
+      notifierList.value.addAll(List.generate(10, (index) => "TEST"));
+      expect(notifierList.value.length, response.length);
+    });
   });
 }

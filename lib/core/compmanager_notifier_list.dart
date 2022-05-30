@@ -42,6 +42,10 @@ class _CompManagerObservedList<T> extends ListBase<T> {
     _notify();
   }
 
+  void addWithoutNotify(final T element) {
+    _list.add(element);
+  }
+
   @override
   void insert(final int index, final T element) {
     _list.insert(index, element);
@@ -65,6 +69,17 @@ class _CompManagerObservedList<T> extends ListBase<T> {
   @override
   void clear() {
     _list.length = 0;
+    _notify();
+  }
+
+  @override
+  void addAll(Iterable<T> iterable) {
+    int i = _list.length;
+    for (T element in iterable) {
+      assert(_list.length == i || (throw ConcurrentModificationError(this)));
+      addWithoutNotify(element);
+      i++;
+    }
     _notify();
   }
 }
