@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:compmanager/domain/interfaces/icomponent.dart';
-import 'package:compmanager/infra/implementations/any_screen.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../iscreen_test.dart';
 import 'icomponent_test.mocks.dart';
 
-class FakeComponent extends Mock implements IComponent<AnyScreen, Container, int> {}
+class FakeComponent extends Mock implements IComponent<ScreenTest, Container, int> {}
 
 @GenerateMocks([FakeComponent])
 void main() {
@@ -26,6 +26,12 @@ void main() {
     test("dispose", () {
       expect(() => fakeComponent.dispose(), returnsNormally);
       verify(fakeComponent.dispose()).called(1);
+    });
+
+
+    test("dispose", () {
+      expect(() => fakeComponent.bindings(), returnsNormally);
+      verify(fakeComponent.bindings()).called(1);
     });
 
     test("constructor", () {
