@@ -58,30 +58,7 @@ When you run the project you will see that the counter is running correctly.
 <br>
 ![image](https://user-images.githubusercontent.com/48370450/166608436-722bc210-32cd-490d-915c-31d0a1adef1a.png)
 
-## Dependency injection and the Conversable class
-Compmanager also has a way for you to store your project's dependencies. It uses a Singleton for this, and after that you can access this information anywhere in your project.
-<br><br>
-To use this feature is very simple, first create a file in your project root directory with the name you want. Below is an example.
-<br>
-![image](https://user-images.githubusercontent.com/48370450/167041551-81f442b8-7405-4397-8d4b-d9f63f840753.png)
-<br><br>
-Now, before running the runApp in main, enter the method you just created and register its dependencies.
-<br>
-![image](https://user-images.githubusercontent.com/48370450/167041741-bfeac45d-eba9-4a83-8267-b8e56dd9e4c4.png)
-<br><br>
-To recover the dependency is very simple, follow the example below.
-First in our class we instantiate our Singleton.
-<br>
-![image](https://user-images.githubusercontent.com/48370450/167041931-74decb46-5119-4950-9b51-fdff858e6e0a.png)
-<br><br>
-After this process, just use the getDependencie() method.
-<br>
-![image](https://user-images.githubusercontent.com/48370450/167045679-7577caec-7b34-428f-a5b6-cd71c1c1578a.png)
-<br><br>
-Result:
-<br>
-![image](https://user-images.githubusercontent.com/48370450/167045663-dbed76b1-8f3c-4907-8724-e59d08013fb8.png)
-<br><br>
+## Conversable class
 The Conversable class is used to send information from one screen to another, for example a button on one screen will update something on another screen, so using this class you will be able to do it, let's go to a basic example.
 <br><br>
 Following our project, let's create a second screen where it will have a button that, when clicked, will call the main screen asking it to increase the count, let's go.
