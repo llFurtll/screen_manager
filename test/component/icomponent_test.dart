@@ -29,7 +29,7 @@ void main() {
     });
 
 
-    test("dispose", () {
+    test("bindings", () {
       expect(() => fakeComponent.bindings(), returnsNormally);
       verify(fakeComponent.bindings()).called(1);
     });
