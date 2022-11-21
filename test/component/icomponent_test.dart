@@ -18,6 +18,11 @@ void main() {
   });
 
   group("Tests methods abstract class IComponent", () {
+    test("loadDependencies", () {
+      expect(() async => await fakeComponent.loadDependencies(), returnsNormally);
+      verify(fakeComponent.loadDependencies()).called(1);
+    });
+
     test("init", () {
       expect(() => fakeComponent.init(), returnsNormally);
       verify(fakeComponent.init()).called(1);

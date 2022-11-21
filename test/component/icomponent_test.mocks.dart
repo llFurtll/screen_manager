@@ -32,6 +32,10 @@ class MockFakeComponent extends _i1.Mock implements _i3.FakeComponent {
   }
 
   @override
+  Future<void> loadDependencies() async => super.noSuchMethod(Invocation.method(#loadDependencies, []),
+    returnValueForMissingStub: null);
+
+  @override
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
