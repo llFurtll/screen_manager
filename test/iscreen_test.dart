@@ -29,6 +29,11 @@ class ScreenTest implements IScreen {
     return;
   }
 
+  @override
+  Future<void> dependencies() async {
+    return;
+  }
+
 }
 
 void main() {
@@ -51,6 +56,10 @@ void main() {
 
     test("addComponent", () {
       expect(() => screen.addComponent(fakeComponent), returnsNormally);
+    });
+
+    test("dependencies", () {
+      expect(() => screen.dependencies(), returnsNormally);
     });
 
     test("getComponent", () {

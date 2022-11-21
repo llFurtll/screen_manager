@@ -26,6 +26,11 @@ class HomePageState implements IScreen {
   IComponent getComponent(Type type) {
     return listComponents.firstWhere((element) => element.runtimeType == type.runtimeType);
   }
+
+  @override
+  Future<void> dependencies() async {
+    return;
+  }
 }
 
 void main() {
