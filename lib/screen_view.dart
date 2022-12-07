@@ -1,12 +1,14 @@
-import 'screen_controller.dart';
 import 'package:flutter/material.dart';
+
+import 'screen_controller.dart';
+import 'screen_injection.dart';
 
 // ignore: must_be_immutable
 abstract class ScreenView<T extends ScreenController> extends StatefulWidget {
   final T Function() creator;
   T? _controller;
   
-  final ScreenViewState _state = ScreenViewState();
+  final _ScreenViewState _state = _ScreenViewState();
 
   ScreenView({Key? key, required this.creator}) : super(key: key) {
     _getIntance();
@@ -14,7 +16,7 @@ abstract class ScreenView<T extends ScreenController> extends StatefulWidget {
 
   T get controller => _getIntance();
 
-  Widget build(BuildContext context);
+  ScreenInjection build(BuildContext context);
 
   T _getIntance() {
     if (_controller != null) {
@@ -28,15 +30,14 @@ abstract class ScreenView<T extends ScreenController> extends StatefulWidget {
   
   @override
   // ignore: no_logic_in_create_state
-  ScreenViewState createState() => _state;
+  _ScreenViewState createState() => _state;
 }
 
-class ScreenViewState extends State<ScreenView> {
+class _ScreenViewState extends State<ScreenView> {
   @override
   void initState() {
-    widget.controller.onInit();
-    print("INIT");
     super.initState();
+    widget.controller.onInit();
   }
 
   @override
