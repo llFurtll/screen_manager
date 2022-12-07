@@ -1,7 +1,14 @@
+import 'package:compmanager/screen_injection.dart';
 import 'package:flutter/material.dart';
 
 import 'screen_controller.dart';
-import 'screen_injection.dart';
+
+abstract class Screen extends StatelessWidget {
+  const Screen({Key? key}) : super(key: key);
+
+  @override
+  ScreenInjection build(BuildContext context);
+}
 
 // ignore: must_be_immutable
 abstract class ScreenView<T extends ScreenController> extends StatefulWidget {
@@ -16,7 +23,7 @@ abstract class ScreenView<T extends ScreenController> extends StatefulWidget {
 
   T get controller => _getIntance();
 
-  ScreenInjection build(BuildContext context);
+  Widget build(BuildContext context);
 
   T _getIntance() {
     if (_controller != null) {

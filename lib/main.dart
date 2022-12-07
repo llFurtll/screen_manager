@@ -8,32 +8,53 @@ import 'screen_view.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: MyApp(),
+    home: Teste(),
   ));
+}
+
+
+class Teste extends Screen {
+  const Teste({Key? key}) : super(key: key);
+
+  @override
+  Injection build(BuildContext context) {
+    return Injection(
+      message: "HELLO WORLD!",
+      child: MyApp(),
+    );
+  }
 }
 
 class MyApp extends ScreenView<MyAppController> {
   MyApp({Key? key}) : super(key: key, creator: () => MyAppController());
 
   @override
-  Injection build(BuildContext context) {
+  Widget build(BuildContext context) {
     print("BUILD");
-    return Injection(
-      message: "HELLO WORLD!",
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.message),
-            onPressed: () => controller.message(),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.message),
+          onPressed: () => controller.message(),
         ),
-        body: const Center(child: Text("LEGAL")),
-      )
+      ),
+      body: ValueListenableBuilder(
+        valueListenable: controller.isLoading,
+        builder: (BuildContext context, bool value, Widget? widget) {
+          if (value) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return Center(child: Text(controller.getMessage));
+        },
+      ),
     );
   }
 }
 
 class MyAppController extends ScreenController {
+  final isLoading = ValueNotifier(true);
+
   late String getMessage;
 
   @override
@@ -47,6 +68,7 @@ class MyAppController extends ScreenController {
     super.onReady();
     print("READY");
     getMessage = Injection.of(state.context).message;
+    isLoading.value = false;
   }
 
   void message() {
@@ -57,7 +79,7 @@ class MyAppController extends ScreenController {
 class Injection extends ScreenInjection {
   final String message;
   
-  const Injection({Key? key, required Widget child, required this.message}) : super(key: key, child: child);
+  const Injection({Key? key, required ScreenView child, required this.message}) : super(key: key, child: child);
 
   static Injection of(BuildContext context) {
     final Injection? result = context.dependOnInheritedWidgetOfExactType();
