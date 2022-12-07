@@ -15,14 +15,32 @@ class MyApp extends ScreenView<MyAppController> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("LEGAL")),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.message),
+          onPressed: () => controller.message(),
+        ),
+      ),
+      body: const Center(child: Text("LEGAL")),
     );
   }
 }
 
 class MyAppController extends ScreenController {
-  void back() {
-    Navigator.of(context).pop();
+  @override
+  void onInit() {
+    super.onInit();
+    print("LEGAL");
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    print("READY");
+  }
+
+  void message() {
+    ScaffoldMessenger.of(state.context).showSnackBar(const SnackBar(content: Text("LEGAL")));
   }
 }
