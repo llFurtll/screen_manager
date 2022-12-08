@@ -30,9 +30,13 @@ class _ScreenViewState<T extends ScreenController, I extends ScreenInjection<T>>
   @override
   void initState() {
     super.initState();
-    if (widget.controller != null) {
-      widget.controller!.onInit();
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget._controller = ScreenInjection.of<I>(context).controller;
+      if (widget._controller != null) {
+        widget.controller!.setState(this);
+        widget._controller!.onInit();
+      }
+    });
   }
 
   @override
@@ -41,15 +45,6 @@ class _ScreenViewState<T extends ScreenController, I extends ScreenInjection<T>>
       widget.controller!.onClose();
     }
     super.dispose();
-  }
-
-  @override
-  void didChangeDependencies() {
-      widget._controller = ScreenInjection.of<I>(context).controller;
-      if (widget._controller != null) {
-        widget.controller!.setState(this);
-      }
-    super.didChangeDependencies();
   }
 
   @override

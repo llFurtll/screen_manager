@@ -7,7 +7,7 @@ abstract class ScreenController {
 
   @mustCallSuper
   void onInit() {
-    WidgetsBinding.instance.addPostFrameCallback((_) => onReady());
+    onReady();
   }
   
   @mustCallSuper
