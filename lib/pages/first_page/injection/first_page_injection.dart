@@ -1,3 +1,4 @@
+import 'package:compmanager/pages/first_page/components/show_snack_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/screen_injection.dart';
@@ -11,7 +12,10 @@ class FirstPageInjection extends ScreenInjection<FirstPageController> {
     }) : super(
       key: key,
       child: child,
-      controller: FirstPageController()
+      controller: FirstPageController(),
+      components: [
+        ShowSnackBarComponent()
+      ]
     );
 
   @override

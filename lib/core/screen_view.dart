@@ -1,3 +1,4 @@
+import 'package:compmanager/core/screen_component.dart';
 import 'package:flutter/material.dart';
 
 import 'screen_controller.dart';
@@ -12,29 +13,36 @@ abstract class Screen extends StatelessWidget {
 
 // ignore: must_be_immutable
 abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
-  final _ScreenViewState _state = _ScreenViewState<T, I>();
   T? _controller;
+  List<ScreenComponent>? _components;
 
   ScreenView({Key? key}) : super(key: key);
 
   @override
-  // ignore: no_logic_in_create_state
-  _ScreenViewState createState() => _state;
+  _ScreenViewState createState() => _ScreenViewState<I>();
 
   Widget build(BuildContext context);
 
   T? get controller => _controller;
+
+  List<ScreenComponent>? get components => _components;
 }
 
-class _ScreenViewState<T extends ScreenController, I extends ScreenInjection<T>> extends State<ScreenView> {
+class _ScreenViewState<I extends ScreenInjection> extends State<ScreenView> {
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       widget._controller = ScreenInjection.of<I>(context).controller;
+      widget._components = ScreenInjection.of<I>(context).components;
       if (widget._controller != null) {
         widget.controller!.setState(this);
         widget._controller!.onInit();
+        if (widget._components != null && widget._components!.isNotEmpty) {
+          for (var component in widget.components!) {
+            component.setController(widget._controller!);
+          }
+        }
       }
     });
   }
