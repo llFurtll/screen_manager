@@ -8,7 +8,6 @@ class FirstPage extends Screen {
 
   @override
   FirstPageInjection build(BuildContext context) {
-    print("ZDASJDHASJKDHASDJKAHSK");
     return FirstPageInjection(
       child: FirstPageView()
     );
@@ -21,7 +20,6 @@ class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> 
 
   @override
   Widget build(BuildContext context) {
-    print("ASDJHADJKAHSDJKLASHDJKASHDJKLAS");
     return Scaffold(
       appBar: AppBar(
         title: const Text("First Page"),

@@ -10,7 +10,8 @@ class FirstPageInjection extends ScreenInjection<FirstPageController> {
     Key? key, required ScreenView child
     }) : super(
       key: key,
-      child: child
+      child: child,
+      controller: FirstPageController()
     );
 
   @override

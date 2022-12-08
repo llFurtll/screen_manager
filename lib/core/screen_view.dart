@@ -12,7 +12,8 @@ abstract class Screen extends StatelessWidget {
 
 // ignore: must_be_immutable
 abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
-  final _ScreenViewState _state = _ScreenViewState();
+  final _ScreenViewState _state = _ScreenViewState<T, I>();
+  T? _controller;
 
   ScreenView({Key? key}) : super(key: key);
 
@@ -22,10 +23,10 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
 
   Widget build(BuildContext context);
 
-  T? get controller => ScreenInjection.of<I>(_state.context).controller;
+  T? get controller => _controller;
 }
 
-class _ScreenViewState extends State<ScreenView> {
+class _ScreenViewState<T extends ScreenController, I extends ScreenInjection<T>> extends State<ScreenView> {
   @override
   void initState() {
     super.initState();
@@ -40,6 +41,15 @@ class _ScreenViewState extends State<ScreenView> {
       widget.controller!.onClose();
     }
     super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+      widget._controller = ScreenInjection.of<I>(context).controller;
+      if (widget._controller != null) {
+        widget.controller!.setState(this);
+      }
+    super.didChangeDependencies();
   }
 
   @override
