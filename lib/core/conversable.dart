@@ -1,9 +1,9 @@
 import 'dart:collection';
 
-import '../domain/interfaces/iscreen.dart';
+import 'screen_receive.dart';
 
 class Conversable {
-  late HashMap<String, IScreen> _screens;
+  late HashMap<String, ScreenReceive> _screens;
 
   static final Conversable _instance = Conversable._internal();
 
@@ -13,13 +13,13 @@ class Conversable {
     _screens = HashMap();
   }
 
-  void addScren<T extends IScreen>(String identify, T value) {
+  void addScren<T extends ScreenReceive>(String identify, T value) {
     if (!_screens.containsValue(value)) {
       _screens[identify] = value;
     }
   }
 
-  IScreen? callScreen<T>(String identify) {
+  ScreenReceive? callScreen<T>(String identify) {
     return _screens[identify];
   }
 }
