@@ -6,12 +6,12 @@ class FirstPageController extends ScreenController {
   ValueNotifier<bool> isLoading = ValueNotifier(true);
 
   void showSnackBar() {
-    ScaffoldMessenger.of(state.context).showSnackBar(const SnackBar(content: Text("Está funcionando")));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Está funcionando")));
   }
 
   @override
   void onReady() {
     super.onReady();
-    isLoading.value = false;
+    Future.delayed(const Duration(seconds: 2), () => isLoading.value = false);
   }
 }

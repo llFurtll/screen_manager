@@ -12,51 +12,31 @@ abstract class Screen extends StatelessWidget {
 }
 
 // ignore: must_be_immutable
-abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
-  T? _controller;
-  List<ScreenComponent>? _components;
+abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<T>> extends StatelessWidget {
+  T? controller;
+  List<ScreenComponent>? components;
 
   ScreenView({Key? key}) : super(key: key);
 
-  @override
-  _ScreenViewState createState() => _ScreenViewState<I>();
-
-  Widget build(BuildContext context);
-
-  T? get controller => _controller;
-
-  List<ScreenComponent>? get components => _components;
-}
-
-class _ScreenViewState<I extends ScreenInjection> extends State<ScreenView> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget._controller = ScreenInjection.of<I>(context).controller;
-      widget._components = ScreenInjection.of<I>(context).components;
-      if (widget._controller != null) {
-        widget.controller!.setState(this);
-        widget._controller!.onInit();
-        if (widget._components != null && widget._components!.isNotEmpty) {
-          for (var component in widget.components!) {
-            component.setController(widget._controller!);
-          }
+  void _injection(BuildContext context) {
+    controller = ScreenInjection.of<I>(context).controller;
+    components = ScreenInjection.of<I>(context).components;
+    if (controller != null) {
+      controller!.setContext(context);
+      controller!.onInit();
+      if (components != null) {
+        for (var component in components!) {
+          component.setController(controller!);
         }
       }
-    });
-  }
-
-  @override
-  void dispose() {
-    if (widget.controller != null) {
-      widget.controller!.onClose();
     }
-    super.dispose();
   }
 
+  @mustCallSuper
   @override
   Widget build(BuildContext context) {
-    return widget.build(context);
+    _injection(context);
+
+    return const Scaffold();
   }
 }

@@ -1,4 +1,3 @@
-import 'package:compmanager/pages/first_page/components/show_snack_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/screen_view.dart';
@@ -22,10 +21,12 @@ class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> 
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("First Page"),
-      ),
+          title: const Text("First Page"),
+        ),
       body: ValueListenableBuilder(
         valueListenable: controller!.isLoading,
         builder: (BuildContext context, bool value, Widget? widget) {
@@ -41,6 +42,7 @@ class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> 
           );
         }
       ),
+      floatingActionButton: components![0].constructor(),
     );
   }
 }
