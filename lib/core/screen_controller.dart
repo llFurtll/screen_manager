@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class ScreenController {
-  late BuildContext context;
+  late State state;
 
   ScreenController();
 
@@ -16,5 +16,5 @@ abstract class ScreenController {
   @mustCallSuper
   void onClose() {}
 
-  void setContext(BuildContext context) => this.context = context;
+  void setState(State state) => this.state = state;
 }

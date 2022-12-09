@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/screen_view.dart';
+import '../components/show_snack_bar.dart';
 import '../controller/first_page_controller.dart';
 import '../injection/first_page_injection.dart';
 
@@ -42,7 +43,7 @@ class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> 
           );
         }
       ),
-      floatingActionButton: components![0].constructor(),
-    );
+      floatingActionButton: getComponent(ShowSnackBarComponent)!.constructor(),
+    ); 
   }
 }
