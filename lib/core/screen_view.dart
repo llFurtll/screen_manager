@@ -20,7 +20,10 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
 
   ScreenView({Key? key}) : super(key: key);
 
-  T get controller => _controller!;
+  T get controller {
+    assert(_controller == null, "Controller has not been defined");
+    return _controller!;
+  }
 
   @override
   // ignore: no_logic_in_create_state
