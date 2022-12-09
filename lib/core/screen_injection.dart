@@ -7,9 +7,9 @@ import 'screen_view.dart';
 // ignore: must_be_immutable
 abstract class ScreenInjection<T extends ScreenController> extends InheritedWidget {
   T? controller;
-  List<ScreenComponent>? components;
+  List<ScreenComponent> components;
 
-  ScreenInjection({Key? key, this.controller, this.components, required ScreenView child}) : super(key: key, child: child);
+  ScreenInjection({Key? key, this.controller, this.components = const [], required ScreenView child}) : super(key: key, child: child);
 
   static I of<I extends ScreenInjection>(BuildContext context) {
     final result = context.dependOnInheritedWidgetOfExactType<I>();

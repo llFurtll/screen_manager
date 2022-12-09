@@ -13,12 +13,14 @@ abstract class Screen extends StatelessWidget {
 
 // ignore: must_be_immutable
 abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
-  T? controller;
-  List<ScreenComponent>? _components;
+  T? _controller;
 
+  late List<ScreenComponent> _components;
   late final _ScreenViewState _state;
 
   ScreenView({Key? key}) : super(key: key);
+
+  T get controller => _controller!;
 
   @override
   // ignore: no_logic_in_create_state
@@ -28,25 +30,20 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
   }
 
   void _injection(BuildContext context) {
-    controller = ScreenInjection.of<I>(context).controller;
+    _controller = ScreenInjection.of<I>(context).controller;
     _components = ScreenInjection.of<I>(context).components;
-    if (controller != null) {
-      controller!.setState(_state);
-      controller!.onInit();
-      if (_components != null) {
-        for (var component in _components!) {
-          component.setController(controller!);
-        }
+    if (_controller != null) {
+      _controller!.setState(_state);
+      _controller!.onInit();
+      for (var component in _components) {
+        component.setController(_controller!);
       }
     }
   }
 
-  ScreenComponent? getComponent(Type type) {
-    if (_components != null && _components!.isNotEmpty) {
-      return _components!.firstWhere((element) => element.runtimeType == type);
-    }
-
-    return null;
+  ScreenComponent getComponent(Type type) {
+    assert(_components.isNotEmpty, "No component found");
+    return _components.firstWhere((element) => element.runtimeType == type);
   }
 
   @mustCallSuper
@@ -60,8 +57,8 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
 class _ScreenViewState extends State<ScreenView> {
   @override
   void dispose() {
-    if (widget.controller != null) {
-      widget.controller!.onClose();
+    if (widget._controller != null) {
+      widget._controller!.onClose();
     }
     super.dispose();
   }

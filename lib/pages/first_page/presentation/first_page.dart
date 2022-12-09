@@ -29,7 +29,7 @@ class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> 
           title: const Text("First Page"),
         ),
       body: ValueListenableBuilder(
-        valueListenable: controller!.isLoading,
+        valueListenable: controller.isLoading,
         builder: (BuildContext context, bool value, Widget? widget) {
           if (value) {
             return const Center(child: CircularProgressIndicator());
@@ -38,12 +38,12 @@ class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> 
           return Center(
             child: ElevatedButton(
               child: const Text("Go To Second Page"),
-              onPressed: () => controller!.showSnackBar(),
+              onPressed: () => controller.showSnackBar(),
             ),
           );
         }
       ),
-      floatingActionButton: getComponent(ShowSnackBarComponent)!.constructor(),
+      floatingActionButton: getComponent(ShowSnackBarComponent).constructor(),
     ); 
   }
 }
