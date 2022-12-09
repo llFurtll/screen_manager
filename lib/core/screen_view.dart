@@ -21,7 +21,7 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
   ScreenView({Key? key}) : super(key: key);
 
   T get controller {
-    assert(_controller == null, "Controller has not been defined");
+    assert(_controller != null, "Controller has not been defined");
     return _controller!;
   }
 
@@ -45,7 +45,7 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
   }
 
   ScreenComponent getComponent(Type type) {
-    assert(_components.isEmpty, "No component found");
+    assert(_components.isNotEmpty, "No component found");
     return _components.firstWhere((element) => element.runtimeType == type);
   }
 
