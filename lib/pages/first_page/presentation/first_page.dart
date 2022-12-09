@@ -26,8 +26,8 @@ class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> 
 
     return Scaffold(
       appBar: AppBar(
-          title: const Text("First Page"),
-        ),
+        title: const Text("First Page"),
+      ),
       body: ValueListenableBuilder(
         valueListenable: controller.isLoading,
         builder: (BuildContext context, bool value, Widget? widget) {
