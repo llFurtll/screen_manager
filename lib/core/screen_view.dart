@@ -42,7 +42,7 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
   }
 
   ScreenComponent getComponent(Type type) {
-    assert(_components.isNotEmpty, "No component found");
+    assert(_components.isEmpty, "No component found");
     return _components.firstWhere((element) => element.runtimeType == type);
   }
 
