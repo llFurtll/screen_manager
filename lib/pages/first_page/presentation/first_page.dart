@@ -43,7 +43,7 @@ class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> 
           );
         }
       ),
-      floatingActionButton: getComponent(ShowSnackBarComponent).constructor(),
+      floatingActionButton: getComponent(ShowSnackBarComponent).build(context),
     ); 
   }
 }
