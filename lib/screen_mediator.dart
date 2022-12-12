@@ -2,14 +2,14 @@ import 'dart:collection';
 
 import 'screen_receive.dart';
 
-class Conversable {
+class ScreenMediator {
   late HashMap<String, ScreenReceive> _screens;
 
-  static final Conversable _instance = Conversable._internal();
+  static final ScreenMediator _instance = ScreenMediator._internal();
 
-  factory Conversable() => _instance;
+  factory ScreenMediator() => _instance;
 
-  Conversable._internal() {
+  ScreenMediator._internal() {
     _screens = HashMap();
   }
 
