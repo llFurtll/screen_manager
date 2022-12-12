@@ -7,7 +7,12 @@ abstract class ScreenComponent<T extends ScreenController> extends StatefulWidge
 
   ScreenComponent({Key? key}) : super(key: key);
 
-  Widget build(BuildContext context);
+  @mustCallSuper
+  Widget build(BuildContext context) {
+    onInit();
+
+    return const Scaffold();
+  }
 
   void setController(T controller) => this.controller = controller;
 
@@ -27,12 +32,6 @@ abstract class ScreenComponent<T extends ScreenController> extends StatefulWidge
 }
 
 class _ScreenComponentState extends State<ScreenComponent> {
-  @override
-  void initState() {
-    super.initState();
-    widget.onInit();
-  }
-  
   @override
   void dispose() {
     widget.onClose();

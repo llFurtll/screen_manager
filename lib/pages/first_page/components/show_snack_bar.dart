@@ -9,6 +9,8 @@ class ShowSnackBarComponent extends ScreenComponent<FirstPageController> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return FloatingActionButton(
       onPressed: () => controller.showSnackBar(),
       child: const Icon(Icons.ads_click),
