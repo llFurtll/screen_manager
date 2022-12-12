@@ -1,5 +1,6 @@
-import 'package:compmanager/core/screen_controller.dart';
 import 'package:flutter/material.dart';
+
+import 'screen_controller.dart';
 
 // ignore: must_be_immutable
 abstract class ScreenComponent<T extends ScreenController> extends StatefulWidget {
