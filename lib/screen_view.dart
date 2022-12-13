@@ -16,7 +16,6 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
   T? _controller;
 
   late List<ScreenComponent> _components;
-  late final _ScreenViewState _state;
 
   ScreenView({Key? key}) : super(key: key);
 
@@ -27,16 +26,13 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
 
   @override
   // ignore: no_logic_in_create_state
-  State<StatefulWidget> createState() {
-    _state = _ScreenViewState();
-    return _state;
-  }
+  State<StatefulWidget> createState() => _ScreenViewState();
 
   void _injection(BuildContext context) {
     _controller = ScreenInjection.of<I>(context).controller;
     _components = ScreenInjection.of<I>(context).components;
     if (_controller != null) {
-      _controller!.setState(_state);
+      _controller!.setContext(context);
       _controller!.onInit();
       for (var component in _components) {
         component.setController(_controller!);

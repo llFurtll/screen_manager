@@ -1,10 +1,17 @@
+import 'package:compmanager/screen_mediator.dart';
+import 'package:compmanager/screen_receive.dart';
 import 'package:compmanager/screen_view.dart';
 import 'package:flutter/material.dart';
 
 import '../injection/first_page_injection.dart';
 import '../controller/first_page_controller.dart';
+import '../components/app_bar_component.dart';
+import '../components/list_peoples_component.dart';
+import '../components/new_people_component.dart';
 
 class FirstPage extends Screen {
+  static const firsPageRoute = "/";
+
   const FirstPage({Key? key}) : super(key: key);
 
   @override
@@ -16,13 +23,40 @@ class FirstPage extends Screen {
 }
 
 // ignore: must_be_immutable
-class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> {
-  FirstPageView({Key? key}) : super(key: key);
+class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> implements ScreenReceive {
+  ScreenMediator mediator = ScreenMediator();
+
+  FirstPageView({Key? key}) : super(key: key) {
+    mediator.addScren("firstpageview", this);
+  }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
-    return const Scaffold();
+    return Scaffold(
+      appBar: getComponent(AppBarComponent).build(context) as PreferredSize,
+      body: Container(
+        padding: const EdgeInsets.all(10.0),
+        child: getComponent(ListPeoplesComponent),
+      ),
+      floatingActionButton: getComponent(NewPeopleComponent),
+    );
+  }
+
+  @override
+  void receive(String message, value, {ScreenReceive? screen}) {
+    switch (message) {
+      case "new_people":
+        controller.peoples.value.add(value);
+        // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+        controller.peoples.notifyListeners();
+        break;
+      case "update_people":
+        int position = controller.peoples.value.indexWhere((people) => people.id == people.id);
+        controller.peoples.value[position] = value;
+        // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+        controller.peoples.notifyListeners();
+    }
   }
 }
