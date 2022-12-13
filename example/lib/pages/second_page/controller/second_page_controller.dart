@@ -2,7 +2,7 @@ import 'package:compmanager/screen_controller.dart';
 import 'package:compmanager/screen_mediator.dart';
 import 'package:flutter/material.dart';
 
-import '../../first_page/entities/people.dart';
+import '../../../entities/people.dart';
 
 class SecondPageController extends ScreenController {
   final keyForm = GlobalKey<FormState>();

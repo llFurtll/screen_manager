@@ -2,8 +2,8 @@ import 'package:compmanager/screen_component.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/first_page_controller.dart';
-import '../entities/people.dart';
 import '../../second_page/view/second_page_view.dart';
+import '../../../entities/people.dart';
 
 // ignore: must_be_immutable
 class ListPeoplesComponent extends ScreenComponent<FirstPageController> {
