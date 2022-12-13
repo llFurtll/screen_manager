@@ -46,17 +46,6 @@ class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> 
 
   @override
   void receive(String message, value, {ScreenReceive? screen}) {
-    switch (message) {
-      case "new_people":
-        controller.peoples.value.add(value);
-        // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-        controller.peoples.notifyListeners();
-        break;
-      case "update_people":
-        int position = controller.peoples.value.indexWhere((people) => people.id == people.id);
-        controller.peoples.value[position] = value;
-        // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-        controller.peoples.notifyListeners();
-    }
+    controller.receive(message, value);
   }
 }

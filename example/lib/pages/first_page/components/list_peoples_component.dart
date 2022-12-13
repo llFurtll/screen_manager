@@ -2,7 +2,6 @@ import 'package:compmanager/screen_component.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/first_page_controller.dart';
-import '../../second_page/view/second_page_view.dart';
 import '../../../entities/people.dart';
 
 // ignore: must_be_immutable
@@ -29,7 +28,7 @@ class ListPeoplesComponent extends ScreenComponent<FirstPageController> {
   
   Widget _buildCardPeople(People people) {
     return InkWell(
-      onTap: () => Navigator.of(controller.context).pushNamed(SecondPage.secondPageRoute, arguments: people),
+      onTap: () => controller.updatePeople(people),
       child: Card(
         child: Container(
           padding: const EdgeInsets.all(10.0),

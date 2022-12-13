@@ -7,7 +7,7 @@ import '../controller/second_page_controller.dart';
 class AppBarComponent extends ScreenComponent<SecondPageController> {
   AppBarComponent({Key? key}) : super(key: key);
 
-  late String? title;
+  late String title;
 
   @override
   void onInit() {
@@ -26,7 +26,7 @@ class AppBarComponent extends ScreenComponent<SecondPageController> {
     return PreferredSize(
       preferredSize: const Size.fromHeight(56.0),
       child: AppBar(
-        title: Text(title == null ? "New People" : "Update People"),
+        title: Text(title),
       )
     );
   }
