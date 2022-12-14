@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 import '../controller/first_page_controller.dart';
 
 // ignore: must_be_immutable
-class NewPeopleComponent extends ScreenComponent<FirstPageController> {
+class NewPeopleComponent extends ScreenComponent<FirstPageController, FloatingActionButton> {
   NewPeopleComponent({Key? key}) : super(key: key);
   
   @override
-  Widget build(BuildContext context) {
-    super.build(context);
-
+  FloatingActionButton build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () => controller.createPeople(),
       child: const Icon(Icons.add),

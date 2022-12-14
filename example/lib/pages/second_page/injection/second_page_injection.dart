@@ -1,5 +1,4 @@
 import 'package:compmanager/screen_injection.dart';
-import 'package:compmanager/screen_view.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/second_page_controller.dart';
@@ -10,7 +9,7 @@ import '../components/save_people_component.dart';
 class SecondPageInjection extends ScreenInjection<SecondPageController> {
   SecondPageInjection({
     Key? key,
-    required ScreenView child
+    required Builder child
   }) : super(
     key: key,
     child: child,
@@ -20,9 +19,7 @@ class SecondPageInjection extends ScreenInjection<SecondPageController> {
       SavePeopleComponent()
     ]
   );
-
-
+  
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
-
 }

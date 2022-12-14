@@ -17,6 +17,7 @@ class SecondPageController extends ScreenController {
   @override
   void onInit() {
     super.onInit();
+    
     people = ModalRoute.of(context)!.settings.arguments as People?;
 
     if (people != null) {

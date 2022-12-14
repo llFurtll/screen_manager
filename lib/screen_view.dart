@@ -17,7 +17,9 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
 
   late List<ScreenComponent> _components;
 
-  ScreenView({Key? key}) : super(key: key);
+  ScreenView({Key? key, required BuildContext context}) : super(key: key) {
+    _injection(context);
+  }
 
   T get controller {
     assert(_controller != null, "Controller has not been defined");
@@ -25,7 +27,6 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
   }
 
   @override
-  // ignore: no_logic_in_create_state
   State<StatefulWidget> createState() => _ScreenViewState();
 
   void _injection(BuildContext context) {
@@ -33,7 +34,6 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
     _components = ScreenInjection.of<I>(context).components;
     if (_controller != null) {
       _controller!.setContext(context);
-      _controller!.onInit();
       for (var component in _components) {
         component.setController(_controller!);
       }
@@ -46,14 +46,18 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
   }
 
   @mustCallSuper
-  Widget build(BuildContext context) {
-    _injection(context);
-
-    return const Scaffold();
-  }
+  Scaffold build(BuildContext context);
 }
 
 class _ScreenViewState extends State<ScreenView> {
+  @override
+  void initState() {
+    super.initState();
+    if (widget._controller != null) {
+      widget._controller!.onInit();
+    }
+  }
+
   @override
   void dispose() {
     if (widget._controller != null) {

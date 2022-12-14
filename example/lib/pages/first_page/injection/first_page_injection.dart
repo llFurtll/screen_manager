@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:compmanager/screen_injection.dart';
-import 'package:compmanager/screen_view.dart';
 
 import '../controller/first_page_controller.dart';
 import '../components/app_bar_component.dart';
@@ -11,7 +10,7 @@ import '../components/new_people_component.dart';
 class FirstPageInjection extends ScreenInjection<FirstPageController> {
   FirstPageInjection({
     Key? key,
-    required ScreenView child
+    required Builder child
   }) : super(
     key: key,
     child: child,

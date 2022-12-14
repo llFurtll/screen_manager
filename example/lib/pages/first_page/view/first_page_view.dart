@@ -17,7 +17,9 @@ class FirstPage extends Screen {
   @override
   FirstPageInjection build(BuildContext context) {
     return FirstPageInjection(
-      child: FirstPageView()
+      child: Builder(
+        builder: (context) => FirstPageView(context: context),
+      ),
     );
   }
 }
@@ -26,16 +28,14 @@ class FirstPage extends Screen {
 class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> implements ScreenReceive {
   ScreenMediator mediator = ScreenMediator();
 
-  FirstPageView({Key? key}) : super(key: key) {
+  FirstPageView({Key? key, required BuildContext context}) : super(key: key, context: context) {
     mediator.addScren("firstpageview", this);
   }
 
   @override
-  Widget build(BuildContext context) {
-    super.build(context);
-
+  Scaffold build(BuildContext context) {
     return Scaffold(
-      appBar: getComponent(AppBarComponent).build(context) as PreferredSize,
+      appBar: getComponent(AppBarComponent).build(context),
       body: Container(
         padding: const EdgeInsets.all(10.0),
         child: getComponent(ListPeoplesComponent),

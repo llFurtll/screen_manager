@@ -3,17 +3,12 @@ import 'package:flutter/material.dart';
 import 'screen_controller.dart';
 
 // ignore: must_be_immutable
-abstract class ScreenComponent<T extends ScreenController> extends StatefulWidget {
+abstract class ScreenComponent<T extends ScreenController, W> extends StatefulWidget {
   late T controller;
 
   ScreenComponent({Key? key}) : super(key: key);
 
-  @mustCallSuper
-  Widget build(BuildContext context) {
-    onInit();
-
-    return const Scaffold();
-  }
+  W build(BuildContext context);
 
   void setController(T controller) => this.controller = controller;
 
@@ -22,10 +17,8 @@ abstract class ScreenComponent<T extends ScreenController> extends StatefulWidge
     WidgetsBinding.instance.addPostFrameCallback((_) => onReady());
   }
 
-  @mustCallSuper
   void onReady() {}
 
-  @mustCallSuper
   void onClose() {}
 
   @override
@@ -33,6 +26,12 @@ abstract class ScreenComponent<T extends ScreenController> extends StatefulWidge
 }
 
 class _ScreenComponentState extends State<ScreenComponent> {
+  @override
+  void initState() {
+    super.initState();
+    widget.onInit();
+  }
+
   @override
   void dispose() {
     widget.onClose();

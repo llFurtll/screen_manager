@@ -5,13 +5,11 @@ import '../controller/first_page_controller.dart';
 import '../../../entities/people.dart';
 
 // ignore: must_be_immutable
-class ListPeoplesComponent extends ScreenComponent<FirstPageController> {
+class ListPeoplesComponent extends ScreenComponent<FirstPageController, ValueListenableBuilder> {
   ListPeoplesComponent({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    super.build(context);
-
+  ValueListenableBuilder<List<People>> build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: controller.peoples,
       builder: (BuildContext context, List<People> value, Widget? widget) {

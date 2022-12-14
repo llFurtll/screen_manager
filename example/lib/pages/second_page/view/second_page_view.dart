@@ -14,21 +14,21 @@ class SecondPage extends Screen {
   @override
   SecondPageInjection build(BuildContext context) {
     return SecondPageInjection(
-      child: SecondPageView()
+      child: Builder(
+        builder: (context) => SecondPageView(context: context),
+      ),
     );
   }
 }
 
 // ignore: must_be_immutable
 class SecondPageView extends ScreenView<SecondPageController, SecondPageInjection> {
-  SecondPageView({Key? key}) : super(key: key);
+  SecondPageView({Key? key, required BuildContext context}) : super(key: key, context: context);
 
   @override
-  Widget build(BuildContext context) {
-    super.build(context);
-
+  Scaffold build(BuildContext context) {
     return Scaffold(
-      appBar: getComponent(AppBarComponent).build(context) as PreferredSize,
+      appBar: getComponent(AppBarComponent).build(context),
       body: Container(
         padding: const EdgeInsets.all(10.0),
         child: _buildForm(),

@@ -10,10 +10,8 @@ abstract class ScreenController {
     WidgetsBinding.instance.addPostFrameCallback((_) => onReady());
   }
   
-  @mustCallSuper
   void onReady() {}
   
-  @mustCallSuper
   void onClose() {}
 
   void setContext(BuildContext context) => this.context = context;
