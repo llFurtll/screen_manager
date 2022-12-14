@@ -12,7 +12,7 @@ abstract class ScreenComponent<T extends ScreenController, I extends ScreenInjec
   }
 
   T get controller {
-    assert(_controller != null, "Not found controller");
+    assert(_controller != null, "Controller has not been defined");
     return _controller!;
   }
 
