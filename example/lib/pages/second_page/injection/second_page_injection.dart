@@ -2,8 +2,6 @@ import 'package:compmanager/screen_injection.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/second_page_controller.dart';
-import '../components/app_bar_component.dart';
-import '../components/save_people_component.dart';
 
 // ignore: must_be_immutable
 class SecondPageInjection extends ScreenInjection<SecondPageController> {
@@ -13,13 +11,9 @@ class SecondPageInjection extends ScreenInjection<SecondPageController> {
   }) : super(
     key: key,
     child: child,
-    controller: SecondPageController(),
-    components: [
-      AppBarComponent(),
-      SavePeopleComponent()
-    ]
+    controller: SecondPageController()
   );
-  
+
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
 }

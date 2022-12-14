@@ -2,14 +2,15 @@ import 'package:compmanager/screen_component.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/first_page_controller.dart';
+import '../injection/first_page_injection.dart';
 import '../../../entities/people.dart';
 
 // ignore: must_be_immutable
-class ListPeoplesComponent extends ScreenComponent<FirstPageController, ValueListenableBuilder> {
-  ListPeoplesComponent({Key? key}) : super(key: key);
+class ListPeoplesComponent extends ScreenComponent<FirstPageController, FirstPageInjection> {
+  ListPeoplesComponent({Key? key, required BuildContext context}) : super(key: key, context: context);
 
   @override
-  ValueListenableBuilder<List<People>> build(BuildContext context) {
+  Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: controller.peoples,
       builder: (BuildContext context, List<People> value, Widget? widget) {

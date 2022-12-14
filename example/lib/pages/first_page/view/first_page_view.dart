@@ -35,12 +35,15 @@ class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> 
   @override
   Scaffold build(BuildContext context) {
     return Scaffold(
-      appBar: getComponent(AppBarComponent).build(context),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(56.0),
+        child: AppBarComponent(context: context),
+      ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
-        child: getComponent(ListPeoplesComponent),
+        child: ListPeoplesComponent(context: context),
       ),
-      floatingActionButton: getComponent(NewPeopleComponent),
+      floatingActionButton: NewPeopleComponent(context: context),
     );
   }
 

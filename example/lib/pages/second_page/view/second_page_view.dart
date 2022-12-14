@@ -28,12 +28,15 @@ class SecondPageView extends ScreenView<SecondPageController, SecondPageInjectio
   @override
   Scaffold build(BuildContext context) {
     return Scaffold(
-      appBar: getComponent(AppBarComponent).build(context),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(56.0),
+        child: AppBarComponent(context: context),
+      ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
         child: _buildForm(),
       ),
-      floatingActionButton: getComponent(SavePeopleComponent),
+      floatingActionButton: SavePeopleComponent(context: context),
     );
   }
 

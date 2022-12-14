@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'screen_component.dart';
 import 'screen_controller.dart';
 import 'screen_injection.dart';
 
@@ -14,8 +13,6 @@ abstract class Screen extends StatelessWidget {
 // ignore: must_be_immutable
 abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
   T? _controller;
-
-  late List<ScreenComponent> _components;
 
   ScreenView({Key? key, required BuildContext context}) : super(key: key) {
     _injection(context);
@@ -31,18 +28,9 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
 
   void _injection(BuildContext context) {
     _controller = ScreenInjection.of<I>(context).controller;
-    _components = ScreenInjection.of<I>(context).components;
     if (_controller != null) {
       _controller!.setContext(context);
-      for (var component in _components) {
-        component.setController(_controller!);
-      }
     }
-  }
-
-  ScreenComponent getComponent(Type type) {
-    assert(_components.isNotEmpty, "No component found");
-    return _components.firstWhere((element) => element.runtimeType == type);
   }
 
   @mustCallSuper
@@ -68,6 +56,10 @@ class _ScreenViewState extends State<ScreenView> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget._controller != null) {
+      widget._controller!.setContext(context);
+    }
+
     return widget.build(context);
   }
 }

@@ -1,16 +1,22 @@
+import 'package:compmanager/screen_injection.dart';
 import 'package:flutter/material.dart';
 
 import 'screen_controller.dart';
 
 // ignore: must_be_immutable
-abstract class ScreenComponent<T extends ScreenController, W> extends StatefulWidget {
-  late T controller;
+abstract class ScreenComponent<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
+  late T? _controller;
 
-  ScreenComponent({Key? key}) : super(key: key);
+  ScreenComponent({Key? key, required BuildContext context}) : super(key: key) {
+    _controller = ScreenInjection.of<I>(context).controller;
+  }
 
-  W build(BuildContext context);
+  T get controller {
+    assert(_controller != null, "Not found controller");
+    return _controller!;
+  }
 
-  void setController(T controller) => this.controller = controller;
+  Widget build(BuildContext context);
 
   @mustCallSuper
   void onInit() {
