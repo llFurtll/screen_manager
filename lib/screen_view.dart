@@ -43,6 +43,7 @@ class _ScreenViewState extends State<ScreenView> {
     super.initState();
     if (widget._controller != null) {
       widget._controller!.onInit();
+      widget._controller!.setRefresh(() => setState(() {}));
     }
   }
 

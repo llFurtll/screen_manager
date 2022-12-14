@@ -9,26 +9,23 @@ import '../../../entities/people.dart';
 class ListPeoplesComponent extends ScreenComponent<FirstPageController, FirstPageInjection> {
   ListPeoplesComponent({Key? key, required BuildContext context}) : super(key: key, context: context);
 
+  bool isSelected = false;
+
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: controller.peoples,
-      builder: (BuildContext context, List<People> value, Widget? widget) {
-        if (value.isEmpty) {
-          return const Center(child: Text("Nenhuma pessoa cadastrada!"));
-        }
-
-        return ListView(
-          children: controller.peoples.value.map((people) => _buildCardPeople(people)).toList()
-        );
-      },
+    return ListView(
+      children: controller.peoples.map((people) => _buildCardPeople(people)).toList()
     );
   }
   
   Widget _buildCardPeople(People people) {
     return InkWell(
-      onTap: () => controller.updatePeople(people),
+      onTap: () {
+        isSelected = !isSelected;
+        refresh();
+      },
       child: Card(
+        color: isSelected ? Colors.blue : Colors.white,
         child: Container(
           padding: const EdgeInsets.all(10.0),
           child: Wrap(
