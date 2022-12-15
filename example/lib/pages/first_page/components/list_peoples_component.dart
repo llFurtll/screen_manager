@@ -9,8 +9,6 @@ import '../../../entities/people.dart';
 class ListPeoplesComponent extends ScreenComponent<FirstPageController, FirstPageInjection> {
   ListPeoplesComponent({Key? key, required BuildContext context}) : super(key: key, context: context);
 
-  bool isSelected = false;
-
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -20,12 +18,8 @@ class ListPeoplesComponent extends ScreenComponent<FirstPageController, FirstPag
   
   Widget _buildCardPeople(People people) {
     return InkWell(
-      onTap: () {
-        isSelected = !isSelected;
-        refresh();
-      },
+      onTap: () => controller.updatePeople(people),
       child: Card(
-        color: isSelected ? Colors.blue : Colors.white,
         child: Container(
           padding: const EdgeInsets.all(10.0),
           child: Wrap(
