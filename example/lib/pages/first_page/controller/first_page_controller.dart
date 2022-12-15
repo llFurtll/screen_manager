@@ -16,6 +16,11 @@ class FirstPageController extends ScreenController {
     Navigator.of(context).pushNamed(SecondPage.secondPageRoute, arguments: people);
   }
 
+  void deletePeople(People people) {
+    peoples.removeWhere((item) => item.id == people.id);
+    refresh();
+  }
+
   void receive(String message, dynamic value, {ScreenReceive? screen}) {
     switch (message) {
       case "new_people":

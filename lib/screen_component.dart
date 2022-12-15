@@ -1,7 +1,7 @@
-import 'package:compmanager/screen_injection.dart';
 import 'package:flutter/material.dart';
 
 import 'screen_controller.dart';
+import 'screen_injection.dart';
 
 // ignore: must_be_immutable
 abstract class ScreenComponent<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
@@ -48,6 +48,7 @@ class _ScreenComponentState extends State<ScreenComponent> {
   @override
   Widget build(BuildContext context) {
     widget.refresh = () => setState(() {});
+    
     return widget.build(context);
   }
 }

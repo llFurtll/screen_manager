@@ -11,13 +11,22 @@ class ListPeoplesComponent extends ScreenComponent<FirstPageController, FirstPag
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: controller.peoples.map((people) => _buildCardPeople(people)).toList()
+    return Builder(
+      builder: (context) {
+        if (controller.peoples.isEmpty) {
+          return const Center(child: Text("Nenhuma pessoa cadastrada!"));
+        }
+
+        return ListView(
+          children: controller.peoples.map((people) => _buildCardPeople(people)).toList()
+        );
+      }
     );
   }
   
   Widget _buildCardPeople(People people) {
     return InkWell(
+      onDoubleTap: () => controller.deletePeople(people),
       onTap: () => controller.updatePeople(people),
       child: Card(
         child: Container(

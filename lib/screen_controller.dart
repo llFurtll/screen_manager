@@ -14,8 +14,4 @@ abstract class ScreenController {
   void onReady() {}
   
   void onClose() {}
-
-  void setContext(BuildContext context) => this.context = context;
-
-  void setRefresh(Function refresh) => this.refresh = refresh;
 }

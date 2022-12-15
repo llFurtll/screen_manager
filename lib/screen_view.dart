@@ -29,7 +29,7 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
   void _injection(BuildContext context) {
     _controller = ScreenInjection.of<I>(context).controller;
     if (_controller != null) {
-      _controller!.setContext(context);
+      _controller!.context = context;
     }
   }
 
@@ -43,7 +43,7 @@ class _ScreenViewState extends State<ScreenView> {
     super.initState();
     if (widget._controller != null) {
       widget._controller!.onInit();
-      widget._controller!.setRefresh(() => setState(() {}));
+      widget._controller!.refresh = () => setState(() {});
     }
   }
 
@@ -58,7 +58,7 @@ class _ScreenViewState extends State<ScreenView> {
   @override
   Widget build(BuildContext context) {
     if (widget._controller != null) {
-      widget._controller!.setContext(context);
+      widget._controller!.context = context;
     }
 
     return widget.build(context);
