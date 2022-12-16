@@ -9,7 +9,7 @@ class NewPeopleWidget extends ScreenWidget<FirstPageController, FirstPageInjecti
   NewPeopleWidget({Key? key, required BuildContext context}) : super(key: key, context: context);
   
   @override
-  Widget build(BuildContext context) {
+  Widget constructor(BuildContext context) {
     return FloatingActionButton(
       onPressed: () => controller.createPeople(),
       child: const Icon(Icons.add),

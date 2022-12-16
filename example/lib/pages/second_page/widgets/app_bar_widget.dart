@@ -13,7 +13,7 @@ class AppBarWidget extends ScreenWidget<SecondPageController, SecondPageInjectio
   @override
   void onInit() {
     super.onInit();
-
+    
     if ((ModalRoute.of(controller.context)!.settings.arguments) != null) {
       title = "Update people";
     } else {
@@ -22,7 +22,7 @@ class AppBarWidget extends ScreenWidget<SecondPageController, SecondPageInjectio
   }
   
   @override
-  Widget build(BuildContext context) {
+  Widget constructor(BuildContext context) {
     return  AppBar(
       title: Text(title),
     );

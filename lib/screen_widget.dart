@@ -4,10 +4,8 @@ import 'screen_controller.dart';
 import 'screen_injection.dart';
 
 // ignore: must_be_immutable
-abstract class ScreenWidget<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
+abstract class ScreenWidget<T extends ScreenController, I extends ScreenInjection<T>> extends StatelessWidget {
   late T? _controller;
-  late Function refresh;
-  late BuildContext context;
 
   ScreenWidget({Key? key, required BuildContext context}) : super(key: key) {
     if (T is! NoController) {
@@ -20,39 +18,23 @@ abstract class ScreenWidget<T extends ScreenController, I extends ScreenInjectio
     return _controller!;
   }
 
-  Widget build(BuildContext context);
+  Widget constructor(BuildContext context);
 
+  @override
+  Widget build(BuildContext context) {
+    onInit();
+
+    return constructor(context);
+  }
+
+  /// This method is called before building the widget
+  /// 
+  /// This method uses WidgetsBinding, override the onReady method to run after build
   @mustCallSuper
   void onInit() {
     WidgetsBinding.instance.addPostFrameCallback((_) => onReady());
   }
 
+  /// Called after the Widget is built
   void onReady() {}
-
-  void onClose() {}
-
-  @override
-  _ScreenWidgetState createState() => _ScreenWidgetState();
-}
-
-class _ScreenWidgetState extends State<ScreenWidget> {
-  @override
-  void initState() {
-    super.initState();
-    widget.onInit();
-  }
-
-  @override
-  void dispose() {
-    widget.onClose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    widget.refresh = () => setState(() {});
-    widget.context = context;
-    
-    return widget.build(context);
-  }
 }
