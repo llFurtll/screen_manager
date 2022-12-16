@@ -1,4 +1,3 @@
-import 'package:compmanager/screen_mediator.dart';
 import 'package:compmanager/screen_receive.dart';
 import 'package:compmanager/screen_view.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +24,8 @@ class FirstPage extends Screen {
 }
 
 // ignore: must_be_immutable
-class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> implements ScreenReceive {
-  ScreenMediator mediator = ScreenMediator();
-
-  FirstPageView({Key? key, required BuildContext context}) : super(key: key, context: context) {
-    mediator.addScren("firstpageview", this);
-  }
+class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> {
+  FirstPageView({Key? key, required BuildContext context}) : super(key: key, context: context);
 
   @override
   Scaffold build(BuildContext context) {

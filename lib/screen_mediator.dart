@@ -20,6 +20,7 @@ class ScreenMediator {
   }
 
   ScreenReceive? callScreen<T>(String identify) {
+    assert(_screens.containsKey(identify), "Screen not found");
     return _screens[identify];
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'screen_controller.dart';
 import 'screen_injection.dart';
+import 'screen_mediator.dart';
+import 'screen_receive.dart';
 
 abstract class Screen extends StatelessWidget {
   const Screen({Key? key}) : super(key: key);
@@ -13,6 +15,7 @@ abstract class Screen extends StatelessWidget {
 // ignore: must_be_immutable
 abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
   T? _controller;
+  late ScreenReceiveArgs _receiveArgs;
 
   ScreenView({Key? key, required BuildContext context}) : super(key: key) {
     _injection(context);
@@ -28,6 +31,7 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
 
   void _injection(BuildContext context) {
     _controller = ScreenInjection.of<I>(context).controller;
+    _receiveArgs = ScreenInjection.of<I>(context).receiveArgs;
     if (_controller != null) {
       _controller!.context = context;
     }
@@ -35,15 +39,24 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
 
   @mustCallSuper
   Scaffold build(BuildContext context);
+
+  void receive(String message, dynamic value, {ScreenReceive? screen}) {
+    return;
+  }
 }
 
-class _ScreenViewState extends State<ScreenView> {
+class _ScreenViewState extends State<ScreenView> with ScreenReceive {
+  ScreenMediator mediator = ScreenMediator();
+
   @override
   void initState() {
     super.initState();
     if (widget._controller != null) {
       widget._controller!.onInit();
       widget._controller!.refresh = () => setState(() {});
+    }
+    if (widget._receiveArgs.receive) {
+      mediator.addScren(widget._receiveArgs.identity, this);
     }
   }
 
@@ -62,5 +75,10 @@ class _ScreenViewState extends State<ScreenView> {
     }
 
     return widget.build(context);
+  }
+
+  @override
+  void receive(String message, dynamic value, {ScreenReceive? screen}) {
+    widget.receive(message, value, screen: screen);
   }
 }

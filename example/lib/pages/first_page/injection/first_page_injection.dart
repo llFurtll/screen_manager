@@ -1,3 +1,4 @@
+import 'package:compmanager/screen_receive.dart';
 import 'package:flutter/material.dart';
 import 'package:compmanager/screen_injection.dart';
 
@@ -11,7 +12,8 @@ class FirstPageInjection extends ScreenInjection<FirstPageController> {
   }) : super(
     key: key,
     child: child,
-    controller: FirstPageController()
+    controller: FirstPageController(),
+    receiveArgs: const ScreenReceiveArgs(receive: true, identity: "firstpageview")
   );
 
   @override
