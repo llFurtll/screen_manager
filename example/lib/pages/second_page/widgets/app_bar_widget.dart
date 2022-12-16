@@ -1,6 +1,7 @@
 import 'package:compmanager/screen_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../../entities/people.dart';
 import '../controller/second_page_controller.dart';
 import '../injection/second_page_injection.dart';
 
@@ -14,8 +15,10 @@ class AppBarWidget extends ScreenWidget<SecondPageController, SecondPageInjectio
   void onInit() {
     super.onInit();
     
-    if ((ModalRoute.of(controller.context)!.settings.arguments) != null) {
-      title = "Update people";
+    final people = ModalRoute.of(controller.context)!.settings.arguments as People?;
+
+    if (people != null) {
+      title = people.nome;
     } else {
       title = "New people";
     }
