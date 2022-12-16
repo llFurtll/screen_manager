@@ -21,7 +21,7 @@ abstract class ScreenInjection<T extends ScreenController> extends InheritedWidg
 }
 
 // ignore: must_be_immutable
-class NoScreenInjection extends ScreenInjection {
+class NoScreenInjection extends ScreenInjection<NoController> {
   NoScreenInjection({Key? key}) : super(key: key, child: Builder(builder: (context) => const SizedBox.shrink()));
 
   @override
