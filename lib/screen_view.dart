@@ -16,6 +16,7 @@ abstract class Screen extends StatelessWidget {
 abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
   late T? _controller;
   late ScreenReceiveArgs _receiveArgs;
+  late Function refresh;
 
   ScreenView({Key? key, required BuildContext context}) : super(key: key) {
     _injection(context);
@@ -71,11 +72,10 @@ class _ScreenViewState extends State<ScreenView> with ScreenReceive {
 
   @override
   Widget build(BuildContext context) {
+    widget.refresh = () => setState(() {});
+
     if (widget._controller != null) {
-      widget._controller!.refresh = () => setState(() {});
-    }
-    
-    if (widget._controller != null) {
+      widget._controller!.refresh = widget.refresh;
       widget._controller!.context = context;
     }
 
