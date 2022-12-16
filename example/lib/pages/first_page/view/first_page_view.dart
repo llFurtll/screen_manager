@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 import '../injection/first_page_injection.dart';
 import '../controller/first_page_controller.dart';
-import '../components/app_bar_component.dart';
-import '../components/list_peoples_component.dart';
-import '../components/new_people_component.dart';
+import '../widgets/app_bar_widget.dart';
+import '../widgets/list_peoples_widget.dart';
+import '../widgets/new_people_widget.dart';
 
 class FirstPage extends Screen {
   static const firsPageRoute = "/";

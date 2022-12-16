@@ -30,10 +30,12 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
   State<StatefulWidget> createState() => _ScreenViewState();
 
   void _injection(BuildContext context) {
-    _controller = ScreenInjection.of<I>(context).controller;
-    _receiveArgs = ScreenInjection.of<I>(context).receiveArgs;
-    if (_controller != null) {
-      _controller!.context = context;
+    if (T is! NoController) {
+      _controller = ScreenInjection.of<I>(context).controller;
+      _receiveArgs = ScreenInjection.of<I>(context).receiveArgs;
+      if (_controller != null) {
+        _controller!.context = context;
+      }
     }
   }
 
@@ -53,7 +55,6 @@ class _ScreenViewState extends State<ScreenView> with ScreenReceive {
     super.initState();
     if (widget._controller != null) {
       widget._controller!.onInit();
-      widget._controller!.refresh = () => setState(() {});
     }
     if (widget._receiveArgs.receive) {
       mediator.addScren(widget._receiveArgs.identity, this);
@@ -70,6 +71,10 @@ class _ScreenViewState extends State<ScreenView> with ScreenReceive {
 
   @override
   Widget build(BuildContext context) {
+    if (widget._controller != null) {
+      widget._controller!.refresh = () => setState(() {});
+    }
+    
     if (widget._controller != null) {
       widget._controller!.context = context;
     }

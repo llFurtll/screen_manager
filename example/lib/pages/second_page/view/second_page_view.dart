@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../injection/second_page_injection.dart';
 import '../controller/second_page_controller.dart';
-import '../components/app_bar_component.dart';
-import '../components/save_people_component.dart';
+import '../widgets/app_bar_widget.dart';
+import '../widgets/save_people_widget.dart';
 
 class SecondPage extends Screen {
   static const secondPageRoute = "/people";

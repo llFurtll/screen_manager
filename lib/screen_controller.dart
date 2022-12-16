@@ -15,3 +15,5 @@ abstract class ScreenController {
   
   void onClose() {}
 }
+
+class NoController extends ScreenController {}

@@ -64,4 +64,7 @@ class SecondPageController extends ScreenController {
       )
     );
   }
+
+  // APPBAR
+  String title = "";
 }

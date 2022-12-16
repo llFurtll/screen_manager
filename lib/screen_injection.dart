@@ -19,3 +19,11 @@ abstract class ScreenInjection<T extends ScreenController> extends InheritedWidg
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget);
 }
+
+// ignore: must_be_immutable
+class NoScreenInjection extends ScreenInjection {
+  NoScreenInjection({Key? key}) : super(key: key, child: Builder(builder: (context) => const SizedBox.shrink()));
+
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
+}

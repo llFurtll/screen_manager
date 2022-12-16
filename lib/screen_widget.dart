@@ -4,12 +4,15 @@ import 'screen_controller.dart';
 import 'screen_injection.dart';
 
 // ignore: must_be_immutable
-abstract class ScreenComponent<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
+abstract class ScreenWidget<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
   late T? _controller;
   late Function refresh;
+  late BuildContext context;
 
-  ScreenComponent({Key? key, required BuildContext context}) : super(key: key) {
-    _controller = ScreenInjection.of<I>(context).controller;
+  ScreenWidget({Key? key, required BuildContext context}) : super(key: key) {
+    if (T is! NoController) {
+      _controller = ScreenInjection.of<I>(context).controller;
+    }
   }
 
   T get controller {
@@ -29,10 +32,10 @@ abstract class ScreenComponent<T extends ScreenController, I extends ScreenInjec
   void onClose() {}
 
   @override
-  _ScreenComponentState createState() => _ScreenComponentState();
+  _ScreenWidgetState createState() => _ScreenWidgetState();
 }
 
-class _ScreenComponentState extends State<ScreenComponent> {
+class _ScreenWidgetState extends State<ScreenWidget> {
   @override
   void initState() {
     super.initState();
@@ -48,6 +51,7 @@ class _ScreenComponentState extends State<ScreenComponent> {
   @override
   Widget build(BuildContext context) {
     widget.refresh = () => setState(() {});
+    widget.context = context;
     
     return widget.build(context);
   }
