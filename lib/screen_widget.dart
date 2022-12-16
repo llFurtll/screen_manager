@@ -8,7 +8,7 @@ abstract class ScreenWidget<T extends ScreenController, I extends ScreenInjectio
   late T? _controller;
 
   ScreenWidget({Key? key, required BuildContext context}) : super(key: key) {
-    if (T is! NoController) {
+    if (T is! NoController && I is! NoScreenInjection) {
       _controller = ScreenInjection.of<I>(context).controller;
     }
   }

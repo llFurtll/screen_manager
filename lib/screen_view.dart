@@ -14,7 +14,7 @@ abstract class Screen extends StatelessWidget {
 
 // ignore: must_be_immutable
 abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
-  T? _controller;
+  late T? _controller;
   late ScreenReceiveArgs _receiveArgs;
 
   ScreenView({Key? key, required BuildContext context}) : super(key: key) {
@@ -30,7 +30,7 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
   State<StatefulWidget> createState() => _ScreenViewState();
 
   void _injection(BuildContext context) {
-    if (T is! NoController) {
+    if (T is! NoController && I is! NoScreenInjection) {
       _controller = ScreenInjection.of<I>(context).controller;
       _receiveArgs = ScreenInjection.of<I>(context).receiveArgs;
       if (_controller != null) {
