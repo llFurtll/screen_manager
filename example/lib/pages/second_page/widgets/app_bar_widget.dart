@@ -25,7 +25,9 @@ class AppBarWidget extends ScreenWidget<SecondPageController, SecondPageInjectio
   }
   
   @override
-  Widget constructor(BuildContext context) {
+  Widget build(BuildContext context) {
+    super.build(context);
+
     return  AppBar(
       title: Text(title),
     );

@@ -9,7 +9,9 @@ class AppBarWidget extends ScreenWidget<FirstPageController, FirstPageInjection>
   AppBarWidget({Key? key, required BuildContext context}) : super(key: key, context: context);
 
   @override
-  Widget constructor(BuildContext context) {
+  Widget build(BuildContext context) {
+    super.build(context);
+    
     return AppBar(
       title: const Text("Peoples"),
     );

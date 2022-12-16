@@ -9,7 +9,9 @@ class SavePeopleWidget extends ScreenWidget<SecondPageController, SecondPageInje
   SavePeopleWidget({Key? key, required BuildContext context}) : super(key: key, context: context);
 
   @override
-  FloatingActionButton constructor(BuildContext context) {
+  FloatingActionButton build(BuildContext context) {
+    super.build(context);
+
     return FloatingActionButton(
       onPressed: () => controller.save(),
       child: const Icon(Icons.save),

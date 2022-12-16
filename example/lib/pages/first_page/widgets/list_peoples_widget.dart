@@ -10,7 +10,9 @@ class ListPeoplesComponent extends ScreenWidget<FirstPageController, FirstPageIn
   ListPeoplesComponent({Key? key, required BuildContext context}) : super(key: key, context: context);
 
   @override
-  Widget constructor(BuildContext context) {
+  Widget build(BuildContext context) {
+    super.build(context);
+
     return Builder(
       builder: (context) {
         if (controller.peoples.isEmpty) {

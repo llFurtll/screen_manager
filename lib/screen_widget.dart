@@ -18,13 +18,12 @@ abstract class ScreenWidget<T extends ScreenController, I extends ScreenInjectio
     return _controller!;
   }
 
-  Widget constructor(BuildContext context);
-
   @override
+  @mustCallSuper
   Widget build(BuildContext context) {
     onInit();
 
-    return constructor(context);
+    return const Scaffold();
   }
 
   /// This method is called before building the widget
