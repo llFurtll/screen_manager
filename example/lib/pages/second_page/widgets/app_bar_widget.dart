@@ -5,8 +5,8 @@ import '../controller/second_page_controller.dart';
 import '../injection/second_page_injection.dart';
 
 // ignore: must_be_immutable
-class AppBarComponent extends ScreenWidget<SecondPageController, SecondPageInjection> {
-  AppBarComponent({Key? key, required BuildContext context}) : super(key: key, context: context);
+class AppBarWidget extends ScreenWidget<SecondPageController, SecondPageInjection> {
+  AppBarWidget({Key? key, required BuildContext context}) : super(key: key, context: context);
 
   late String title;
 
