@@ -57,7 +57,7 @@ class _ScreenViewState extends State<ScreenView> with ScreenReceive {
       widget._controller!.onInit();
     }
     if (widget._receiveArgs.receive) {
-      mediator.addScren(widget._receiveArgs.identity, this);
+      mediator.addScreen(widget._receiveArgs.identity, this);
     }
   }
 

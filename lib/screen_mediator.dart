@@ -13,7 +13,7 @@ class ScreenMediator {
     _screens = HashMap();
   }
 
-  void addScren<T extends ScreenReceive>(String identify, T value) {
+  void addScreen<T extends ScreenReceive>(String identify, T value) {
     if (!_screens.containsValue(value)) {
       _screens[identify] = value;
     }
