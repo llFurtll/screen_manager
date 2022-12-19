@@ -7,8 +7,8 @@ import 'screen_injection.dart';
 abstract class ScreenWidget<T extends ScreenController, I extends ScreenInjection<T>> extends StatelessWidget {
   late T? _controller;
 
-  ScreenWidget({Key? key, required BuildContext context}) : super(key: key) {
-    if (T is! NoController && I is! NoScreenInjection) {
+  ScreenWidget({Key? key, BuildContext? context}) : super(key: key) {
+    if (T is! NoController && I is! NoScreenInjection && context != null) {
       _controller = ScreenInjection.of<I>(context).controller;
     }
   }
