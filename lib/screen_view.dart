@@ -20,12 +20,13 @@ class ScreenParams<C extends ScreenController, I extends ScreenInjection<C>> ext
 
   @override
   Widget build(BuildContext context) {
-    C? controller = ScreenManagerController.getDependencie();
+    C? controller = ScreenManagerController.getController();
     
     if (controller == null) {
       controller = ScreenInjection.of<I>(context).controller;
+      controller.receiveArgs = ScreenInjection.of<I>(context).receiveArgs;
       controller.context = context;
-      ScreenManagerController.registerDependencie(controller);
+      ScreenManagerController.registerController(controller);
     } else {
       controller.context = context;
     }
@@ -37,13 +38,14 @@ class ScreenParams<C extends ScreenController, I extends ScreenInjection<C>> ext
 }
 
 // ignore: must_be_immutable
-abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
-  ScreenReceiveArgs? _receiveArgs;
-  late Function refresh;
+abstract class ScreenView<C extends ScreenController, I extends ScreenInjection<C>> extends StatefulWidget {
+  const ScreenView({Key? key}) : super(key: key);
 
-  ScreenView({Key? key}) : super(key: key);
-
-  T get controller => ScreenManagerController.getDependencie()!;
+  C get controller {
+    C? item = ScreenManagerController.getController();
+    assert(item != null, "Controller has not been difined");
+    return item!;
+  }
 
   @override
   State<StatefulWidget> createState() => _ScreenViewState<I>();
@@ -63,9 +65,8 @@ class _ScreenViewState<I extends ScreenInjection> extends State<ScreenView> with
   void initState() {
     super.initState();
     widget.controller.onInit();
-    widget._receiveArgs = ScreenInjection.of<I>(widget.controller.context).receiveArgs;
-    if (widget._receiveArgs != null && widget._receiveArgs!.receive) {
-      mediator.addScreen(widget._receiveArgs!.identity, this);
+    if (widget.controller.receiveArgs.receive) {
+      mediator.addScreen(widget.controller.receiveArgs.identity, this);
     }
   }
 
@@ -78,17 +79,13 @@ class _ScreenViewState<I extends ScreenInjection> extends State<ScreenView> with
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    
-    widget.refresh = () => setState(() {});
-
-    widget.controller.refresh = widget.refresh;
+    widget.controller.refresh = () => setState(() {});
     widget.controller.context = context;
     widget.controller.onDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return widget.build(context);
   }
 

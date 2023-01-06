@@ -5,10 +5,14 @@ import 'screen_injection.dart';
 import 'screen_manager_controller.dart';
 
 // ignore: must_be_immutable
-abstract class ScreenWidget<T extends ScreenController, I extends ScreenInjection<T>> extends StatelessWidget {
+abstract class ScreenWidget<C extends ScreenController, I extends ScreenInjection<C>> extends StatelessWidget {
   const ScreenWidget({Key? key, BuildContext? context}) : super(key: key);
 
-  T get controller => ScreenManagerController.getDependencie()!;
+  C get controller {
+    C? item = ScreenManagerController.getController();
+    assert(item != null, "Controller has not been difined");
+    return item!;
+  }
 
   @override
   @mustCallSuper
