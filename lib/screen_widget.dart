@@ -2,21 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'screen_controller.dart';
 import 'screen_injection.dart';
+import 'screen_manager_controller.dart';
 
 // ignore: must_be_immutable
 abstract class ScreenWidget<T extends ScreenController, I extends ScreenInjection<T>> extends StatelessWidget {
-  late T? _controller;
+  const ScreenWidget({Key? key, BuildContext? context}) : super(key: key);
 
-  ScreenWidget({Key? key, BuildContext? context}) : super(key: key) {
-    if (T is! NoController && I is! NoScreenInjection && context != null) {
-      _controller = ScreenInjection.of<I>(context).controller;
-    }
-  }
-
-  T get controller {
-    assert(_controller != null, "Controller has not been defined");
-    return _controller!;
-  }
+  T get controller => ScreenManagerController.getDependencie()!;
 
   @override
   @mustCallSuper

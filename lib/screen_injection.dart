@@ -2,13 +2,22 @@ import 'package:flutter/material.dart';
 
 import 'screen_controller.dart';
 import 'screen_receive.dart';
+import 'screen_view.dart';
 
 // ignore: must_be_immutable
 abstract class ScreenInjection<T extends ScreenController> extends InheritedWidget {
-  T? controller;
+  T controller;
   ScreenReceiveArgs receiveArgs;
 
-  ScreenInjection({Key? key, this.controller, this.receiveArgs = const ScreenReceiveArgs(identity: "", receive: false), required Builder child}) : super(key: key, child: child);
+  ScreenInjection({
+    Key? key,
+    required this.controller,
+    this.receiveArgs = const ScreenReceiveArgs(identity: "", receive: false),
+    required ScreenParams child
+  }) : super(
+    key: key,
+    child: child
+  );
 
   static I of<I extends ScreenInjection>(BuildContext context) {
     final result = context.dependOnInheritedWidgetOfExactType<I>();
@@ -18,12 +27,4 @@ abstract class ScreenInjection<T extends ScreenController> extends InheritedWidg
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget);
-}
-
-// ignore: must_be_immutable
-class NoScreenInjection extends ScreenInjection<NoController> {
-  NoScreenInjection({Key? key}) : super(key: key, child: Builder(builder: (context) => const SizedBox.shrink()));
-
-  @override
-  bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
 }

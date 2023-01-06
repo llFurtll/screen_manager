@@ -7,7 +7,7 @@ import '../../../entities/people.dart';
 
 // ignore: must_be_immutable
 class ListPeoplesComponent extends ScreenWidget<FirstPageController, FirstPageInjection> {
-  ListPeoplesComponent({Key? key, required BuildContext context}) : super(key: key, context: context);
+  const ListPeoplesComponent({Key? key, required BuildContext context}) : super(key: key, context: context);
 
   @override
   Widget build(BuildContext context) {

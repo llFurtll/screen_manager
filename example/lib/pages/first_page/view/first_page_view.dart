@@ -16,16 +16,16 @@ class FirstPage extends Screen {
   @override
   FirstPageInjection build(BuildContext context) {
     return FirstPageInjection(
-      child: Builder(
-        builder: (context) => FirstPageView(context: context),
-      ),
+      child: ScreenParams<FirstPageController, FirstPageInjection>(
+        child: FirstPageView(),
+      )
     );
   }
 }
 
 // ignore: must_be_immutable
 class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> {
-  FirstPageView({Key? key, required BuildContext context}) : super(key: key, context: context);
+  FirstPageView({Key? key}) : super(key: key);
 
   @override
   Scaffold build(BuildContext context) {

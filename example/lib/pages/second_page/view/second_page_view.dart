@@ -14,16 +14,16 @@ class SecondPage extends Screen {
   @override
   SecondPageInjection build(BuildContext context) {
     return SecondPageInjection(
-      child: Builder(
-        builder: (context) => SecondPageView(context: context),
-      ),
+      child: ScreenParams<SecondPageController, SecondPageInjection>(
+        child: SecondPageView(),
+      )
     );
   }
 }
 
 // ignore: must_be_immutable
 class SecondPageView extends ScreenView<SecondPageController, SecondPageInjection> {
-  SecondPageView({Key? key, required BuildContext context}) : super(key: key, context: context);
+  SecondPageView({Key? key}) : super(key: key);
 
   @override
   Scaffold build(BuildContext context) {

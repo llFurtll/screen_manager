@@ -6,7 +6,7 @@ import '../injection/first_page_injection.dart';
 
 // ignore: must_be_immutable
 class NewPeopleWidget extends ScreenWidget<FirstPageController, FirstPageInjection> {
-  NewPeopleWidget({Key? key, required BuildContext context}) : super(key: key, context: context);
+  const NewPeopleWidget({Key? key, required BuildContext context}) : super(key: key, context: context);
   
   @override
   Widget build(BuildContext context) {

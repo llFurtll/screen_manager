@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'screen_controller.dart';
 import 'screen_injection.dart';
+import 'screen_manager_controller.dart';
 import 'screen_mediator.dart';
 import 'screen_receive.dart';
 
@@ -12,33 +13,40 @@ abstract class Screen extends StatelessWidget {
   ScreenInjection build(BuildContext context);
 }
 
+class ScreenParams<C extends ScreenController, I extends ScreenInjection<C>> extends StatelessWidget {
+  final Widget child;
+
+  const ScreenParams({Key? key, required this.child}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    C? controller = ScreenManagerController.getDependencie();
+    
+    if (controller == null) {
+      controller = ScreenInjection.of<I>(context).controller;
+      controller.context = context;
+      ScreenManagerController.registerDependencie(controller);
+    } else {
+      controller.context = context;
+    }
+    
+    return SizedBox(
+      child: child,
+    );
+  }
+}
+
 // ignore: must_be_immutable
 abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<T>> extends StatefulWidget {
-  T? _controller;
   ScreenReceiveArgs? _receiveArgs;
   late Function refresh;
 
-  ScreenView({Key? key, BuildContext? context}) : super(key: key) {
-    _injection(context);
-  }
+  ScreenView({Key? key}) : super(key: key);
 
-  T get controller {
-    assert(_controller != null, "Controller has not been defined");
-    return _controller!;
-  }
+  T get controller => ScreenManagerController.getDependencie()!;
 
   @override
-  State<StatefulWidget> createState() => _ScreenViewState();
-
-  void _injection(BuildContext? context) {
-    if (T is! NoController && I is! NoScreenInjection && context != null) {
-      _controller = ScreenInjection.of<I>(context).controller;
-      _receiveArgs = ScreenInjection.of<I>(context).receiveArgs;
-      if (_controller != null) {
-        _controller!.context = context;
-      }
-    }
-  }
+  State<StatefulWidget> createState() => _ScreenViewState<I>();
 
   @mustCallSuper
   Scaffold build(BuildContext context);
@@ -48,15 +56,14 @@ abstract class ScreenView<T extends ScreenController, I extends ScreenInjection<
   }
 }
 
-class _ScreenViewState extends State<ScreenView> with ScreenReceive {
+class _ScreenViewState<I extends ScreenInjection> extends State<ScreenView> with ScreenReceive {
   ScreenMediator mediator = ScreenMediator();
 
   @override
   void initState() {
     super.initState();
-    if (widget._controller != null) {
-      widget._controller!.onInit();
-    }
+    widget.controller.onInit();
+    widget._receiveArgs = ScreenInjection.of<I>(widget.controller.context).receiveArgs;
     if (widget._receiveArgs != null && widget._receiveArgs!.receive) {
       mediator.addScreen(widget._receiveArgs!.identity, this);
     }
@@ -64,29 +71,24 @@ class _ScreenViewState extends State<ScreenView> with ScreenReceive {
 
   @override
   void dispose() {
-    if (widget._controller != null) {
-      widget._controller!.onClose();
-    }
+    widget.controller.onClose();
     super.dispose();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (widget._controller != null) {
-      widget._controller!.onDependencies();
-    }
+    
+    widget.refresh = () => setState(() {});
+
+    widget.controller.refresh = widget.refresh;
+    widget.controller.context = context;
+    widget.controller.onDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    widget.refresh = () => setState(() {});
-
-    if (widget._controller != null) {
-      widget._controller!.refresh = widget.refresh;
-      widget._controller!.context = context;
-    }
-
+    
     return widget.build(context);
   }
 
