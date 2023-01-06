@@ -14,6 +14,8 @@ abstract class ScreenController {
   void onReady() {}
   
   void onClose() {}
+
+  void onDependencies() {}
 }
 
 class NoController extends ScreenController {}

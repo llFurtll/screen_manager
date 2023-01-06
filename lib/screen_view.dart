@@ -71,6 +71,14 @@ class _ScreenViewState extends State<ScreenView> with ScreenReceive {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget._controller != null) {
+      widget._controller!.onDependencies();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     widget.refresh = () => setState(() {});
 
