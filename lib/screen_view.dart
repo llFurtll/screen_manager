@@ -38,7 +38,7 @@ class ScreenParams<C extends ScreenController, I extends ScreenInjection<C>> ext
 }
 
 // ignore: must_be_immutable
-abstract class ScreenView<C extends ScreenController, I extends ScreenInjection<C>> extends StatefulWidget {
+abstract class ScreenView<C extends ScreenController> extends StatefulWidget {
   const ScreenView({Key? key}) : super(key: key);
 
   C get controller {
@@ -48,7 +48,7 @@ abstract class ScreenView<C extends ScreenController, I extends ScreenInjection<
   }
 
   @override
-  State<StatefulWidget> createState() => _ScreenViewState<I>();
+  State<StatefulWidget> createState() => _ScreenViewState();
 
   @mustCallSuper
   Scaffold build(BuildContext context);
@@ -58,7 +58,7 @@ abstract class ScreenView<C extends ScreenController, I extends ScreenInjection<
   }
 }
 
-class _ScreenViewState<I extends ScreenInjection> extends State<ScreenView> with ScreenReceive {
+class _ScreenViewState extends State<ScreenView> with ScreenReceive {
   ScreenMediator mediator = ScreenMediator();
 
   @override

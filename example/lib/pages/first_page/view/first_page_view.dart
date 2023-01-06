@@ -16,7 +16,7 @@ class FirstPage extends Screen {
   @override
   FirstPageInjection build(BuildContext context) {
     return FirstPageInjection(
-      child: ScreenParams<FirstPageController, FirstPageInjection>(
+      child: const ScreenParams<FirstPageController, FirstPageInjection>(
         child: FirstPageView(),
       )
     );
@@ -24,8 +24,8 @@ class FirstPage extends Screen {
 }
 
 // ignore: must_be_immutable
-class FirstPageView extends ScreenView<FirstPageController, FirstPageInjection> {
-  FirstPageView({Key? key}) : super(key: key);
+class FirstPageView extends ScreenView<FirstPageController> {
+  const FirstPageView({Key? key}) : super(key: key);
 
   @override
   Scaffold build(BuildContext context) {
