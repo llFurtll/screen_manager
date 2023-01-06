@@ -13,10 +13,10 @@ abstract class Screen extends StatelessWidget {
   ScreenInjection build(BuildContext context);
 }
 
-class ScreenParams<C extends ScreenController, I extends ScreenInjection<C>> extends StatelessWidget {
+class ScreenBridge<C extends ScreenController, I extends ScreenInjection<C>> extends StatelessWidget {
   final Widget child;
 
-  const ScreenParams({Key? key, required this.child}) : super(key: key);
+  const ScreenBridge({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,6 @@ class ScreenParams<C extends ScreenController, I extends ScreenInjection<C>> ext
   }
 }
 
-// ignore: must_be_immutable
 abstract class ScreenView<C extends ScreenController> extends StatefulWidget {
   const ScreenView({Key? key}) : super(key: key);
 

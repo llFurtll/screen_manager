@@ -16,14 +16,13 @@ class FirstPage extends Screen {
   @override
   FirstPageInjection build(BuildContext context) {
     return FirstPageInjection(
-      child: const ScreenParams<FirstPageController, FirstPageInjection>(
+      child: const ScreenBridge<FirstPageController, FirstPageInjection>(
         child: FirstPageView(),
       )
     );
   }
 }
 
-// ignore: must_be_immutable
 class FirstPageView extends ScreenView<FirstPageController> {
   const FirstPageView({Key? key}) : super(key: key);
 

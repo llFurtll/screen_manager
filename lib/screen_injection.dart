@@ -4,16 +4,15 @@ import 'screen_controller.dart';
 import 'screen_receive.dart';
 import 'screen_view.dart';
 
-// ignore: must_be_immutable
 abstract class ScreenInjection<T extends ScreenController> extends InheritedWidget {
-  T controller;
-  ScreenReceiveArgs receiveArgs;
+  final T controller;
+  final ScreenReceiveArgs receiveArgs;
 
-  ScreenInjection({
+  const ScreenInjection({
     Key? key,
     required this.controller,
     this.receiveArgs = const ScreenReceiveArgs(identity: "", receive: false),
-    required ScreenParams child
+    required ScreenBridge child
   }) : super(
     key: key,
     child: child

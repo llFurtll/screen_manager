@@ -25,8 +25,8 @@ abstract class ScreenController {
   
   @mustCallSuper
   void onClose() {
-    ScreenManagerController.removeController(this);
     log("[SCREEN_MANAGER]: Running onClose $runtimeType");
+    ScreenManagerController.removeController(this);
   }
 
   @mustCallSuper

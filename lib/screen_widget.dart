@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'screen_controller.dart';
-import 'screen_injection.dart';
 import 'screen_manager_controller.dart';
 
-// ignore: must_be_immutable
-abstract class ScreenWidget<C extends ScreenController, I extends ScreenInjection<C>> extends StatelessWidget {
+abstract class ScreenWidget<C extends ScreenController> extends StatelessWidget {
   const ScreenWidget({Key? key, BuildContext? context}) : super(key: key);
 
   C get controller {
