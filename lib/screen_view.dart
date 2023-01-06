@@ -31,9 +31,7 @@ class ScreenBridge<C extends ScreenController, I extends ScreenInjection<C>> ext
       controller.context = context;
     }
     
-    return SizedBox(
-      child: child,
-    );
+    return child;
   }
 }
 
