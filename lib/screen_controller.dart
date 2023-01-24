@@ -10,8 +10,6 @@ abstract class ScreenController {
   late Function refresh;
   late ScreenReceiveArgs receiveArgs;
 
-  ScreenController();
-
   @mustCallSuper
   void onInit() {
     log("[SCREEN_MANAGER]: Running onInit $runtimeType");

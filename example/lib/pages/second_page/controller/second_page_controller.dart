@@ -6,7 +6,6 @@ import '../../../entities/people.dart';
 
 class SecondPageController extends ScreenController {
   final keyForm = GlobalKey<FormState>();
-  final ScreenMediator mediator = ScreenMediator();
 
   String nome = "";
   int idade = 0;
@@ -40,11 +39,11 @@ class SecondPageController extends ScreenController {
           image: imagem
         );
 
-        mediator.callScreen("firstpageview")!.receive("new_people", people);
+        ScreenMediator.callScreen("firstpageview")!.receive("new_people", people);
         Navigator.of(context).pop();
       } else {
         People updatePeople = People(id: people!.id, nome: nome, idade: idade, image: imagem);
-        mediator.callScreen("firstpageview")!.receive("update_people", updatePeople);
+        ScreenMediator.callScreen("firstpageview")!.receive("update_people", updatePeople);
         Navigator.of(context).pop();
       }
       

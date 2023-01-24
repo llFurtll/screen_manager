@@ -56,19 +56,20 @@ abstract class ScreenView<C extends ScreenController> extends StatefulWidget {
 }
 
 class _ScreenViewState extends State<ScreenView> with ScreenReceive {
-  ScreenMediator mediator = ScreenMediator();
-
   @override
   void initState() {
     super.initState();
     widget.controller.onInit();
     if (widget.controller.receiveArgs.receive) {
-      mediator.addScreen(widget.controller.receiveArgs.identity, this);
+      ScreenMediator.addScreen(widget.controller.receiveArgs.identity, this);
     }
   }
 
   @override
   void dispose() {
+    if (widget.controller.receiveArgs.receive) {
+      ScreenMediator.removeScreen(widget.controller.receiveArgs.identity); 
+    }
     widget.controller.onClose();
     super.dispose();
   }

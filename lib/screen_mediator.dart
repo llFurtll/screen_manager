@@ -1,26 +1,25 @@
 import 'dart:collection';
+import 'dart:developer';
 
 import 'screen_receive.dart';
 
-class ScreenMediator {
-  late HashMap<String, ScreenReceive> _screens;
+abstract class ScreenMediator {
+  static final HashMap<String, ScreenReceive> _screens = HashMap();
 
-  static final ScreenMediator _instance = ScreenMediator._internal();
-
-  factory ScreenMediator() => _instance;
-
-  ScreenMediator._internal() {
-    _screens = HashMap();
-  }
-
-  void addScreen<T extends ScreenReceive>(String identify, T value) {
-    if (!_screens.containsValue(value)) {
+  static void addScreen<T extends ScreenReceive>(String identify, T value) {
+    if (!_screens.containsKey(identify)) {
+      log("[SCREEN_MANAGER]: Added screen with identification: `$identify` for receiving calls");
       _screens[identify] = value;
     }
   }
 
-  ScreenReceive? callScreen<T>(String identify) {
+  static ScreenReceive? callScreen<T>(String identify) {
     assert(_screens.containsKey(identify), "Screen not found");
     return _screens[identify];
+  }
+
+  static void removeScreen(String identify) {
+    log("[SCREEN_MANAGER]: Removed screen with identification: $identify");
+    _screens.removeWhere((key, value) => key == identify);
   }
 }
