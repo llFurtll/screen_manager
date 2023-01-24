@@ -28,8 +28,8 @@ abstract class ScreenInjection<T extends ScreenController> extends InheritedWidg
   bool updateShouldNotify(covariant InheritedWidget oldWidget);
 }
 
-class NoInjection extends ScreenInjection {
-  NoInjection({Key? key}) : super(key: key, child: ScreenBridge(child: Container()), controller: NoController());
+class NoScreenInjection extends ScreenInjection {
+  NoScreenInjection({Key? key}) : super(key: key, child: ScreenBridge(child: Container()), controller: NoController());
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
