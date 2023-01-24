@@ -7,7 +7,7 @@ import '../controller/second_page_controller.dart';
 
 // ignore: must_be_immutable
 class AppBarWidget extends ScreenWidget<SecondPageController> {
-  AppBarWidget({Key? key, required BuildContext context}) : super(key: key, context: context);
+  AppBarWidget({Key? key}) : super(key: key);
 
   late String title;
 

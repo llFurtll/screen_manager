@@ -5,7 +5,7 @@ import '../controller/second_page_controller.dart';
 
 
 class SavePeopleWidget extends ScreenWidget<SecondPageController> {
-  const SavePeopleWidget({Key? key, required BuildContext context}) : super(key: key, context: context);
+  const SavePeopleWidget({Key? key}) : super(key: key);
 
   @override
   FloatingActionButton build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../controller/first_page_controller.dart';
 
 class NewPeopleWidget extends ScreenWidget<FirstPageController> {
-  const NewPeopleWidget({Key? key, required BuildContext context}) : super(key: key, context: context);
+  const NewPeopleWidget({Key? key}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ import 'screen_controller.dart';
 import 'screen_manager_controller.dart';
 
 abstract class ScreenWidget<C extends ScreenController> extends StatelessWidget {
+  /// Use context when you want the widget to be rebuilt after calling the refresh method
   const ScreenWidget({Key? key, BuildContext? context}) : super(key: key);
 
   C get controller {

@@ -29,13 +29,13 @@ class SecondPageView extends ScreenView<SecondPageController> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(56.0),
-        child: AppBarWidget(context: context),
+        child: AppBarWidget(),
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
         child: _buildForm(),
       ),
-      floatingActionButton: SavePeopleWidget(context: context),
+      floatingActionButton: const SavePeopleWidget(),
     );
   }
 

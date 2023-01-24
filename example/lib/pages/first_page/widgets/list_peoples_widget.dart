@@ -5,7 +5,7 @@ import '../controller/first_page_controller.dart';
 import '../../../entities/people.dart';
 
 class ListPeoplesComponent extends ScreenWidget<FirstPageController> {
-  const ListPeoplesComponent({Key? key, required BuildContext context}) : super(key: key, context: context);
+  const ListPeoplesComponent({Key? key, BuildContext? context}) : super(key: key, context: context);
 
   @override
   Widget build(BuildContext context) {
