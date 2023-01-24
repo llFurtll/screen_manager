@@ -32,5 +32,3 @@ abstract class ScreenController {
     log("[SCREEN_MANAGER]: Running onDependencies $runtimeType");
   }
 }
-
-class NoController extends ScreenController {}
