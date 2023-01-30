@@ -29,7 +29,9 @@ class ScreenBridge<C extends ScreenController, I extends ScreenInjection<C>> ext
       ScreenManagerController.registerController(controller);
     }
     
-    return child;
+    return Scaffold(
+      body: child,
+    );
   }
 }
 
@@ -45,8 +47,7 @@ abstract class ScreenView<C extends ScreenController> extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _ScreenViewState();
 
-  @mustCallSuper
-  Scaffold build(BuildContext context);
+  Widget build(BuildContext context);
 
   void receive(String message, dynamic value, {ScreenReceive? screen}) {
     return;
