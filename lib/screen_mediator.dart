@@ -13,9 +13,14 @@ abstract class ScreenMediator {
     }
   }
 
-  static ScreenReceive? callScreen<T>(String identify) {
+  static void callScreen<T>(
+    String identify,
+    String message,
+    dynamic value,
+    {ScreenReceive? screen}
+  ) {
     assert(_screens.containsKey(identify), "Screen not found");
-    return _screens[identify];
+    _screens[identify]!.receive(message, value, screen: screen);
   }
 
   static void removeScreen(String identify) {

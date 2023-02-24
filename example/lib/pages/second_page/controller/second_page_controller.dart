@@ -39,11 +39,11 @@ class SecondPageController extends ScreenController {
           image: imagem
         );
 
-        ScreenMediator.callScreen("firstpageview")!.receive("new_people", people);
+        ScreenMediator.callScreen("firstpageview", "new_people", people);
         Navigator.of(context).pop();
       } else {
         People updatePeople = People(id: people!.id, nome: nome, idade: idade, image: imagem);
-        ScreenMediator.callScreen("firstpageview")!.receive("update_people", updatePeople);
+        ScreenMediator.callScreen("firstpageview", "update_people", updatePeople);
         Navigator.of(context).pop();
       }
       
