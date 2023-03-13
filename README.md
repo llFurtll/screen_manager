@@ -78,6 +78,37 @@ Na injection também é possível no super do construtor definir mais um argumen
  receiveArgs: const ScreenReceiveArgs(receive: true, identity: "homeview")
 ```
 
+### Como buscar as dependências
+Para buscar uma dependência do Injection é muito simples, vamos pegar o exemplo anterior, e vamos buscar a dependência na Controller, lembrando que essa dependência também pode ser buscada no Widget ou na View.
+```dart
+class HomeInjection extends ScreenInjection<HomeController> {
+  final user = Usuario();
+
+  HomeInjection({
+   Key? key,
+   required ScreenBridge child
+  }) : super(
+    key: key,
+    child: child,
+    controller: HomeController()
+  );
+ }
+```
+Como você pode notar criei uma variável user que é um novo Usuario, vamos supor que você deseja buscar essa instância em sua Controller, você pode fazer dessa forma utilizando a classe ScreenInjection.
+```dart
+class HomeController extends ScreenController {
+ final user = ScreenInjection.of<HomeInjection>(context).user;
+}
+```
+Basicamente você irá passar no método of qual Injection ele deverá buscar e qual informação você deseja pegar, pronto nisso você terá em sua Controller a instância do seu Usuario.
+
+Você também pode ter notado que na Injection contém o seguinte método:
+```dart
+@override
+bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
+```
+Esse método vem do InheritedWidget, caso você queira que sua View seja atualizada por alguma mudança nos atributos de sua injection, você pode implementar esse método para isso, para entender mais procure sobre InheritedWidget e veja como fazer.
+
 ## View
 Nesse momento será a hora de criar sua View, aqui conterá a classe ScreenBridge, sua Injection e sua View, segue exemplo:
 ```dart
