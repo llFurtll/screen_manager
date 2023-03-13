@@ -142,7 +142,61 @@ Também possuí alguns métodos de sobrecarga:
 
 Um ponto importante, todo Widget que extends ScreenWidget é um StatelesWidget.
 
-## Disparando mensagens entre Views
+## Disparando mensagens entre Views (ScreenReceiveArgs)
+Lembra daquele argumento que eu falei que você poderia adicionar a mais no super do Injection? Aí está o ponto, aquele argumento serve para identificar se sua View estará visível para receber chamadas, segue novamente um exemplo mostrando.
+Então primeiramente em sua Injection:
+```dart
+class HomeInjection extends ScreenInjection<HomeController> {
+  HomeInjection({
+    Key? key,
+    required ScreenBridge child
+  }) : super(
+    key: key,
+    child: child,
+    controller: HomeController(),
+    receiveArgs: const ScreenReceiveArgs(receive: true, identity: "homeview")
+  );
+
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
+}
+```
+Como você pode ver, na Injection da Home, definimos que ela receberá chamadas, passando como true no argumento receive e a identificação que será utilizada para chamar essa View.
+Após isso em nossa controller implementaremos um método chamado `receive`, ou um nome que você achar melhor, segue exemplo:
+```dart
+void receive(String message, dynamic value, {ScreenReceive? screen}) {
+  switch (message) {
+    case "new_people":
+      peoples.add(value);
+      break;
+    case "update_people":
+      int position = peoples.indexWhere((people) => people.id == value.id);
+      peoples[position] = value;
+  }
+
+  refresh();
+}
+```
+e na sua View, irá fazer uma sobrecarga no método `receive`:
+```dart
+@override
+void receive(String message, value, {ScreenReceive? screen}) {
+  controller.receive(message, value);
+}
+```
+O método `receive` tem 3 parâmetros:
+<b> message: </b> Qual a mensagem da chamada, no nosso exemplo tem a mensagem 'new_people', 'update_people', nesse caso baseado na mensagem você irá disparar funções diferentes.
+<b> value: </b> No caso se você deseja enviar um valor para View, você irá passar nessa informação, no nosso exemplo estou passando uma entidade do tipo People.
+<b> screen: </b> No caso, se você desejar passar a instância da View que está realizando a chamada, e criar uma lógica do tipo, caso essa tela esteja em atualização, nenhuma chamada da View x será aceito, você também pode utilizar dessa forma.
+
+Para realizar a chamada é bem simples, você usará a classe ScreenMediator para isso, segue exemplo:
+```dart
+ScreenMediator.callScreen("homeview", "new_people", people);
+```
+Lembrando que, para realizar essa chamada, na Injection novamente, deve-se estar configurado para a View receber essas chamadas, cuidado também com a identicação, se a mesma estiver errada, um erro será disparado.
+
+
+Caso queira ver alguns exemplos, nesse repositório contém o exemplo que criei utilizando os padrões do plugin, também em meu repositório existe o projeto <a href="https://github.com/llFurtll/easy_note" target="blank">EasyNote</a>, onde eu fiz esse projeto utilizando os padrões desse plugin.
 
 ### :man:  Dev
 <a href="https://www.linkedin.com/in/daniel-melonari-5413a7197/" target="_blank">
