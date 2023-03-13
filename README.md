@@ -24,10 +24,125 @@ O ScreenManager possúi uma estrutura criado por mim mesmo no momento de criar s
 * <b>widgets || components: </b> Caso você tenha o mesmo gosto que eu, quando tem uma AppBar, FloatAction em minha View, costumo separar esses widgets ou components em arquivos separados, deixando as coisas mais desacopladas, aqui ficará todos essas partes da sua UI.
 
 ## Controller
+Agora vamos entender a Controller, antes que você pergunte, sim algumas coisas eu fiz baseado no plugin GetX, para criar uma controller é muito simples, basta seguir o código abaixo:
+```dart
+ class HomeController extends ScreenController {}
+```
+Apenas isso que você precisa para criar sua Controller, ela também possuí alguns métodos que são possíveis realizar sobrecarga, segue exemplo:
+```dart
+ class HomeController extends ScreenController {
+   @override
+   void onInit() {
+    super.onInit();
+   }
+   
+   @override
+   void onReady() {
+    super.onReady();
+   }
+   
+   @override
+   void onClose() {
+    super.onClose();
+   }
+   
+   @override
+   void onDependencies() {
+    super.onDependencies();
+   }
+ }
+```
+* <b>onInit: </b> Esse método é executado no initState do StatefulWidget.
+* <b>onReady: </b> Esse método é executado após o build do StatefulWidget.
+* <b>onClose: </b> Esse método é executado no dispose do StatefulWidget.
+* <b>onDependencies: </b> Esse método é executado no didChangeDependencies do StatefulWidget.
+* <b>refresh: </b> Esse método chama o setState do seu StatefulWidget.
 
-## Calling the component on the screen.
+## Injection
+O Injection é a parte que você cria as instâncias de objetos que você deseja acessar posteriormente em sua UI, segue exemplo de criação:
+```dart
+ class HomeInjection extends ScreenInjection<HomeController> {
+  HomeInjection({
+   Key? key,
+   required ScreenBridge child
+  }) : super(
+    key: key,
+    child: child,
+    controller: HomeController()
+  );
+ }
+```
+Como pode notar, na Injection também colocamos qual é o controller responsável, para que a classe ScreenBridge, que no caso é a nossa ponte entre as injeções e a UI possa fazer seu trabalho de realizar as injeções da controller na UI.
+Na injection também é possível no super do construtor definir mais um argumento que se chama `receiveArgs`, segue um exemplo, esse será explicado posteriormente.
+```dart
+ receiveArgs: const ScreenReceiveArgs(receive: true, identity: "homeview")
+```
 
-## Conversable class
+## View
+Nesse momento será a hora de criar sua View, aqui conterá a classe ScreenBridge, sua Injection e sua View, segue exemplo:
+```dart
+  class HomeBridge extends Screen {
+    const HomeBridge({Key? key}) : super(key: key);
+    
+    @override
+    HomeInjection build(BuildContext context) {
+      return HomeInjection(
+        child: const ScreenBridge<HomeController, HomeInjection>(
+          child: HomeView(),
+        )
+      );
+    }
+  }
+  
+  class HomeView extends ScreenView<HomeController> {
+    const HomeView({Key? key}) : super(key: key);
+    
+    @override
+    Scaffold build(BuildContext context) {
+      return const Scaffold();
+    }
+  }
+```
+Como você pode ver, na parte da Bridge você primeiramente retorna sua Injection, nisso você retorna o ScreenBridge onde é a ponte, indicando para a mesma qual é a controller e a injection que ele deverá utilizar para realizar as injeções e criações necessárias, nisso o filho da ponte será de fato sua view, essa ponte é extremamente necessária estar configurada corretamente, pois se não a criação da view não será possível ser feito, e erros podem acontecer.
+
+Na parte da View apenas é necessário fazer a sobrecarga do método build e retornar um Scaffold, toda View será necessário ter um Scaffold para ser possível realizar as operações como BottomSheet entre outros widgets que necessita de um Scaffold.
+
+Um ponto importante, toda View nesse caso é um StatefulWidget.
+
+## Widgets
+Caso você queira criar Widgets para sua tela, onde eles também teram acesso ao controller da UI, lembrando que esses widgets são feitos exclusivamente para a UI, por motivos que ele compartilha o mesmo controller.
+```dart
+ class FabWidget extends ScreenWidget<HomeController> {
+   @override
+   void onInit() {
+    super.onInit();
+    
+    print("INIT");
+   }
+   
+   @override
+   void onReady() {
+    print("READY");
+   }
+ 
+   @override
+   Widget build(BuildContext context) {
+     super.build(context);
+     
+     return FloatActionButton(
+       onPressed: controller.add,
+       child: const Icon(Icons.add)
+     );
+   }
+ }
+```
+Também possuí alguns métodos de sobrecarga:
+* <b>onInit: </b> Esse método é executado antes de retornar o Widget em si.
+* <b>onReady: </b> Após o build do Widget o mesmo é chamado.
+
+Um ponto importante, todo Widget que extends ScreenWidget é um StatelesWidget.
+
+## Disparando mensagens entre Views
 
 ### :man:  Dev
 <a href="https://www.linkedin.com/in/daniel-melonari-5413a7197/" target="_blank">
