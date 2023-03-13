@@ -9,9 +9,21 @@ Sempre que falamos em injeções de dependências, separação de regra da UI, v
 Antes de utilizar esse plugin, saiba que ele está em fase inicial, isso significa que não possuí muitos recursos, basicamente o que desenvolvi nele nada mais é que um padrão para seu projeto, e o que ele vem para ajudar basicamente foi feito conforme eu necessitava em meus projetos iniciais, então dependendo do que você esteja procurando, pode ser que ainda o ScreenManager não tenha essa funcionalidade, mas nada impede desse plugin futuramente crescer ainda mais para ser utilizados para várias situações do dia a dia do desenvolvedor.
 
 ## Pontos a entender
-O ScreenManager possúi uma estrutura criado por mim mesmo no momento de criar suas UI do aplicativo, vamos entender essa estrutura, lembrando que você.
+O ScreenManager possúi uma estrutura criado por mim mesmo no momento de criar suas UI do aplicativo, vamos entender essa estrutura, lembrando que você não precisa seguir essa estrutura de certa forma, fica a seu critério o melhor jeito, vamos lá.
+```
+ - lib
+   - home
+     - controller
+     - injection
+     - view
+     - widgets || components
+```
+* <b>controller: </b> Aqui ficará o controlador da sua view, suas regras de negócio, atualização de estado entre outros.
+* <b>injection: </b> Aqui ficará suas dependências que você deseja que sua tela tenha acesso como, data sources, repository, use case entre outros.
+* <b>view: </b> Aqui ficará sua view, onde você cria a ponte entre as injeções e sua tela, também ficará a junção de seus widgets/components.
+* <b>widgets || components: </b> Caso você tenha o mesmo gosto que eu, quando tem uma AppBar, FloatAction em minha View, costumo separar esses widgets ou components em arquivos separados, deixando as coisas mais desacopladas, aqui ficará todos essas partes da sua UI.
 
-## Creating the component
+## Controller
 
 ## Calling the component on the screen.
 
