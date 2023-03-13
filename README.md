@@ -2,11 +2,14 @@
 
 <a href="https://www.buymeacoffee.com/danielmelonari" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
-## In process of updating...
+## Por que?
+Sempre que falamos em injeções de dependências, separação de regra da UI, vamos diretamente em plugins que nos facilitam isso, porém sempre fiquei com pé atrás em ficar utilizando plugins terceiros que nos ajudam a realizar tais tarefas, onde com o próprio Flutter tem recursos para realizarmos tais tarefas. Então pensei em criar um plugin utilizando os recursos do Flutter para ajudar a realizar as injeções e separações de forma simples.
 
-## Why?
+## Observações
+Antes de utilizar esse plugin, saiba que ele está em fase inicial, isso significa que não possuí muitos recursos, basicamente o que desenvolvi nele nada mais é que um padrão para seu projeto, e o que ele vem para ajudar basicamente foi feito conforme eu necessitava em meus projetos iniciais, então dependendo do que você esteja procurando, pode ser que ainda o ScreenManager não tenha essa funcionalidade, mas nada impede desse plugin futuramente crescer ainda mais para ser utilizados para várias situações do dia a dia do desenvolvedor.
 
-## How to use?
+## Pontos a entender
+O ScreenManager possúi uma estrutura criado por mim mesmo no momento de criar suas UI do aplicativo, vamos entender essa estrutura, lembrando que você.
 
 ## Creating the component
 
