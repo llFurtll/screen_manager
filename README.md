@@ -9,7 +9,7 @@ Sempre que falamos em injeções de dependências, separação de regra da UI, v
 Antes de utilizar esse plugin, saiba que ele está em fase inicial, isso significa que não possuí muitos recursos, basicamente o que desenvolvi nele nada mais é que um padrão para seu projeto, e o que ele vem para ajudar basicamente foi feito conforme eu necessitava em meus projetos iniciais, então dependendo do que você esteja procurando, pode ser que ainda o ScreenManager não tenha essa funcionalidade, mas nada impede desse plugin futuramente crescer ainda mais para ser utilizados para várias situações do dia a dia do desenvolvedor.
 
 ## Pontos a entender
-O ScreenManager possúi uma estrutura criado por mim mesmo no momento de criar suas UI do aplicativo, vamos entender essa estrutura, lembrando que você não precisa seguir essa estrutura de certa forma, fica a seu critério o melhor jeito, vamos lá.
+O ScreenManager possuí uma estrutura criado por mim mesmo no momento de criar suas UI do aplicativo, vamos entender essa estrutura, lembrando que você não precisa seguir essa estrutura de certa forma, fica a seu critério o melhor jeito, vamos lá.
 ```
  - lib
    - home
