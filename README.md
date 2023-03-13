@@ -185,9 +185,9 @@ void receive(String message, value, {ScreenReceive? screen}) {
 }
 ```
 O método `receive` tem 3 parâmetros:
-<b> message: </b> Qual a mensagem da chamada, no nosso exemplo tem a mensagem 'new_people', 'update_people', nesse caso baseado na mensagem você irá disparar funções diferentes.
-<b> value: </b> No caso se você deseja enviar um valor para View, você irá passar nessa informação, no nosso exemplo estou passando uma entidade do tipo People.
-<b> screen: </b> No caso, se você desejar passar a instância da View que está realizando a chamada, e criar uma lógica do tipo, caso essa tela esteja em atualização, nenhuma chamada da View x será aceito, você também pode utilizar dessa forma.
+* <b> message: </b> Qual a mensagem da chamada, no nosso exemplo tem a mensagem 'new_people', 'update_people', nesse caso baseado na mensagem você irá disparar funções diferentes.
+* <b> value: </b> No caso se você deseja enviar um valor para View, você irá passar nessa informação, no nosso exemplo estou passando uma entidade do tipo People.
+* <b> screen: </b> No caso, se você desejar passar a instância da View que está realizando a chamada, e criar uma lógica do tipo, caso essa tela esteja em atualização, nenhuma chamada da View x será aceito, você também pode utilizar dessa forma.
 
 Para realizar a chamada é bem simples, você usará a classe ScreenMediator para isso, segue exemplo:
 ```dart
