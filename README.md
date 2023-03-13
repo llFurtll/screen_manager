@@ -193,7 +193,7 @@ Para realizar a chamada é bem simples, você usará a classe ScreenMediator par
 ```dart
 ScreenMediator.callScreen("homeview", "new_people", people);
 ```
-Lembrando que, para realizar essa chamada, na Injection novamente, deve-se estar configurado para a View receber essas chamadas, cuidado também com a identicação, se a mesma estiver errada, um erro será disparado.
+Lembrando que, para realizar essa chamada, na Injection novamente, deve-se estar configurado para a View receber essas chamadas, cuidado também com a identificação, se a mesma estiver errada, um erro será disparado.
 
 
 Caso queira ver alguns exemplos, nesse repositório contém o exemplo que criei utilizando os padrões do plugin, também em meu repositório existe o projeto <a href="https://github.com/llFurtll/easy_note" target="blank">EasyNote</a>, onde eu fiz esse projeto utilizando os padrões desse plugin.
