@@ -1,4 +1,4 @@
-name: compmanager
+name: screen_manager
 description: Padronizando as dependências e controladores de UI utilizando os recursos do Flutter.
 version: 1.0.0
 homepage:
