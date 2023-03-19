@@ -94,10 +94,17 @@ class HomeInjection extends ScreenInjection<HomeController> {
   );
  }
 ```
-Como você pode notar criei uma variável user que é um novo Usuario, vamos supor que você deseja buscar essa instância em sua Controller, você pode fazer dessa forma utilizando a classe ScreenInjection.
+Como você pode notar criei uma variável user que é um novo Usuario, vamos supor que você deseja buscar essa instância em sua Controller, você pode fazer dessa forma utilizando a classe ScreenInjection. Lembrando que no caso da Controller, essas dependências devem ser buscadas no método onInit, onReady ou onDependencies, onde de fato o contexto já foi criado.
 ```dart
 class HomeController extends ScreenController {
- final user = ScreenInjection.of<HomeInjection>(context).user;
+ late final Usuario user;
+ 
+ @override
+ void onInit() {
+  super.onInit();
+  
+  user = ScreenInjection.of<HomeInjection>(context).user;
+ }
 }
 ```
 Basicamente você irá passar no método of qual Injection ele deverá buscar e qual informação você deseja pegar, pronto nisso você terá em sua Controller a instância do seu Usuario.
