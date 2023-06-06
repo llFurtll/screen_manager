@@ -127,7 +127,7 @@ Com esse context você pode chamar o GlobalDependencies e buscar as dependência
 @override
 void dependencies(BuildContext? context) {
     homeDataSource = HomeDataSource(
-      connection: GlobalDependencies.of(context).connection
+      connection: GlobalDependencies.of(context!).connection
     );
 }
 ```
