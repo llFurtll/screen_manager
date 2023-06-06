@@ -1,5 +1,5 @@
-import 'package:compmanager/screen_controller.dart';
-import 'package:compmanager/screen_receive.dart';
+import 'package:screen_manager/screen_controller.dart';
+import 'package:screen_manager/screen_receive.dart';
 import 'package:flutter/material.dart';
 
 import '../../second_page/view/second_page_view.dart';

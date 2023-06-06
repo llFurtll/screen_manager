@@ -7,16 +7,20 @@ import 'screen_view.dart';
 abstract class ScreenInjection<T extends ScreenController> extends InheritedWidget {
   final T controller;
   final ScreenReceiveArgs receiveArgs;
+  final BuildContext? context;
 
-  const ScreenInjection({
+  ScreenInjection({
     Key? key,
     required this.controller,
     this.receiveArgs = const ScreenReceiveArgs(identity: "", receive: false),
-    required ScreenBridge child
+    required ScreenBridge child,
+    this.context
   }) : super(
     key: key,
     child: child
-  );
+  ) {
+    dependencies(context);
+  }
 
   static I of<I extends ScreenInjection>(BuildContext context) {
     final result = context.dependOnInheritedWidgetOfExactType<I>();
@@ -26,4 +30,6 @@ abstract class ScreenInjection<T extends ScreenController> extends InheritedWidg
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget);
+
+  void dependencies(BuildContext? context) {}
 }

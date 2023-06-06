@@ -1,5 +1,5 @@
-import 'package:compmanager/screen_receive.dart';
-import 'package:compmanager/screen_view.dart';
+import 'package:screen_manager/screen_receive.dart';
+import 'package:screen_manager/screen_view.dart';
 import 'package:flutter/material.dart';
 
 import '../injection/first_page_injection.dart';
@@ -9,13 +9,14 @@ import '../widgets/list_peoples_widget.dart';
 import '../widgets/new_people_widget.dart';
 
 class FirstPage extends Screen {
-  static const firsPageRoute = "/";
+  static const firstPageRoute = "/";
 
   const FirstPage({Key? key}) : super(key: key);
 
   @override
   FirstPageInjection build(BuildContext context) {
     return FirstPageInjection(
+      context: context,
       child: const ScreenBridge<FirstPageController, FirstPageInjection>(
         child: FirstPageView(),
       )

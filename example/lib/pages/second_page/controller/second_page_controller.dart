@@ -1,5 +1,5 @@
-import 'package:compmanager/screen_controller.dart';
-import 'package:compmanager/screen_mediator.dart';
+import 'package:screen_manager/screen_controller.dart';
+import 'package:screen_manager/screen_mediator.dart';
 import 'package:flutter/material.dart';
 
 import '../../../entities/people.dart';

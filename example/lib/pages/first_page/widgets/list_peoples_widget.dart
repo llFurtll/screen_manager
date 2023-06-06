@@ -1,4 +1,4 @@
-import 'package:compmanager/screen_widget.dart';
+import 'package:screen_manager/screen_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/first_page_controller.dart';
