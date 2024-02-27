@@ -1,6 +1,6 @@
 name: screen_manager
 description: Padronizando as dependências e controladores de UI utilizando os recursos do Flutter.
-version: 1.0.2
+version: 1.1.0
 homepage: https://github.com/llFurtll/screen_manager
 platforms:
   android:

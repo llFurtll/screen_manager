@@ -78,6 +78,74 @@ Na injection também é possível no super do construtor definir mais um argumen
  receiveArgs: const ScreenReceiveArgs(receive: true, identity: "homeview")
 ```
 
+### Dependências globais
+Após repensar em alguns pontos, pensei em um ponto onde seria interessante o desenvolvedor injetar dependências globais na aplicação.
+Nesse caso imagine que você tenha uma instância de um objeto que contém a conexão com um sqlite, nisso você necessita em vários locais
+da aplicação criar novas instâncias de datasources que dependam dessa conexão, nesse caso não seria interessante ficar criando várias instâncias,
+então nisso agora nas Injections você têm um método chamado dependencies, onde você pode sobescrever esse método e instanciar suas variáveis
+com essa dependência.
+Bom, vamos para o exemplo.
+Priemeiramente crie um InheritedWidget que irá conter suas dependências globais, no meu caso vou colocar uma classe fictícia, segue código:
+```dart
+class GlobalDependencies extends InheritedWidget {
+  final ConnectionSqlite connection = ConnectionSqlite();
+
+  const GlobalDependencies({
+    super.key,
+    required super.child
+  });
+
+  static GlobalDependencies of(BuildContext context) {
+    final result = context.dependOnInheritedWidgetOfExactType<GlobalDependencies>();
+    assert(result != null, "No injection found on context");
+    return result!;
+  }
+
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
+}
+```
+
+Agora no seu main.dart coloque esse InheritedWidget como pai de todos:
+```dart
+runApp(
+  GlobalDependencies(
+    child: MaterialApp(
+      initialRoute: "/",
+      routes: {
+        FirstPage.firstPageRoute: (context) => const FirstPage(),
+        SecondPage.secondPageRoute:(context) => const SecondPage()
+      },
+    )
+  )
+);
+```
+
+Agora vamos pegar como base o HomeInjection, nessa classe sobrescreva o método dependencies, você irá ver que esse método depende de um contexto, esse método será chamado no momento em que o Injection for instanciado.
+Com esse context você pode chamar o GlobalDependencies e buscar as dependências que precisa para instanciar seus novos objetos. Vamos supor que nesse meu Injection eu vou instanciar um novo DataSource que depende da conexão.
+```dart
+@override
+void dependencies(BuildContext? context) {
+    homeDataSource = HomeDataSource(
+      connection: GlobalDependencies.of(context!).connection
+    );
+}
+```
+Pronto, assim você irá conseguir criar suas novas instâncias em qualquer Injection que dependa por exemplo da conexão.
+
+Por fim você deve-se lembrar que caso você vai utilizar essa abordagem, deverá colocar um late em suas variáveis e na hora de criar sua instância do Injection deverá passar o contexto, segue o exemplo:
+```dart
+@override
+FirstPageInjection build(BuildContext context) {
+  return FirstPageInjection(
+    context: context,
+    child: const ScreenBridge<FirstPageController, FirstPageInjection>(
+      child: FirstPageView(),
+    )
+  );
+}
+```
+
 ### Como buscar as dependências
 Para buscar uma dependência do Injection é muito simples, vamos pegar o exemplo anterior, e vamos buscar a dependência na Controller, lembrando que essa dependência também pode ser buscada no Widget ou na View.
 ```dart
