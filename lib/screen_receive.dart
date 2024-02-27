@@ -1,4 +1,4 @@
-abstract class ScreenReceive {
+mixin ScreenReceive {
   void receive(String message, dynamic value, {ScreenReceive? screen});
 }
 

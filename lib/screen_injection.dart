@@ -32,4 +32,8 @@ abstract class ScreenInjection<T extends ScreenController> extends InheritedWidg
   bool updateShouldNotify(covariant InheritedWidget oldWidget);
 
   void dependencies(BuildContext? context) {}
+
+  List<Object> get attributes {
+    return [];
+  }
 }

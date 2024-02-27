@@ -8,6 +8,7 @@ import '../controller/first_page_controller.dart';
 
 class FirstPageInjection extends ScreenInjection<FirstPageController> {
   late final String teste;
+  final ValueNotifier<String> helloWord = ValueNotifier("Lista de Pessoas");
 
   FirstPageInjection({
     Key? key,
@@ -27,5 +28,10 @@ class FirstPageInjection extends ScreenInjection<FirstPageController> {
   @override
   void dependencies(BuildContext? context) {
     teste = GlobalDependencies.of(context!).hello;
+  }
+
+  @override
+  List<Object> get attributes {
+    return [teste, helloWord];
   }
 }
