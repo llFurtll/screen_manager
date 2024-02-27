@@ -1,5 +1,6 @@
 import 'package:screen_manager/screen_receive.dart';
 import 'package:screen_manager/screen_view.dart';
+import 'package:screen_manager/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:screen_manager/screen_injection.dart';
 
@@ -27,7 +28,7 @@ class FirstPageInjection extends ScreenInjection<FirstPageController> {
 
   @override
   void dependencies(BuildContext? context) {
-    teste = GlobalDependencies.of(context!).hello;
+    teste = context!.getInherited<GlobalDependencies>().hello;
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:screen_manager/extensions.dart';
 import 'package:screen_manager/screen_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class AppBarWidget extends ScreenWidget<SecondPageController> {
   void onInit() {
     super.onInit();
     
-    final people = ModalRoute.of(controller.context)!.settings.arguments as People?;
+    final people = controller.context.params<People>();
 
     if (people != null) {
       title = people.nome;

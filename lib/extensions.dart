@@ -8,5 +8,9 @@ extension ScreenContext on BuildContext {
     final T attribute = screenInject.attributes.whereType<T>().first;
     return attribute;
   }
+  I getInherited<I extends InheritedWidget>() {
+    final inherited = ScreenInjection.ofInherited<I>(this);
+    return inherited;
+  }
   T? params<T>() => ModalRoute.of(this)?.settings.arguments as T?;
 }

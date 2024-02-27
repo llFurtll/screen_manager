@@ -28,6 +28,12 @@ abstract class ScreenInjection<T extends ScreenController> extends InheritedWidg
     return result!;
   }
 
+  static I ofInherited<I extends InheritedWidget>(BuildContext context) {
+    final result = context.dependOnInheritedWidgetOfExactType<I>();
+    assert(result != null, "No InheritedWidget found on context");
+    return result!;   
+  }
+
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget);
 
