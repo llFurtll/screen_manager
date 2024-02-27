@@ -34,8 +34,13 @@ class ListPeoplesComponent extends ScreenWidget<FirstPageController> {
           child: Wrap(
             spacing: 10.0,
             children: [
-              CircleAvatar(
-                backgroundImage: NetworkImage(people.image),
+              Image.network(
+                people.image,
+                errorBuilder: (_, __, ___) {
+                  return const CircleAvatar(
+                    backgroundColor: Colors.grey,
+                  );
+                },
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

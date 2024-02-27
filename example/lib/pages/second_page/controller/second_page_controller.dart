@@ -1,3 +1,4 @@
+import 'package:screen_manager/extensions.dart';
 import 'package:screen_manager/screen_controller.dart';
 import 'package:screen_manager/screen_mediator.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class SecondPageController extends ScreenController {
   void onInit() {
     super.onInit();
     
-    people = ModalRoute.of(context)!.settings.arguments as People?;
+    people = context.params<People>();
 
     if (people != null) {
       nome = people!.nome;
