@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:screen_manager/screen_controller.dart';
 import 'package:screen_manager/screen_injection.dart';
 
 extension ScreenContext on BuildContext {
@@ -13,4 +14,8 @@ extension ScreenContext on BuildContext {
     return inherited;
   }
   T? params<T>() => ModalRoute.of(this)?.settings.arguments as T?;
+}
+
+extension ScreenControllerExtension on ScreenController {
+  T? params<T>() => ModalRoute.of(context)?.settings.arguments as T?;
 }

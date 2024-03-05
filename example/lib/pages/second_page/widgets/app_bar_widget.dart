@@ -16,7 +16,7 @@ class AppBarWidget extends ScreenWidget<SecondPageController> {
   void onInit() {
     super.onInit();
     
-    final people = controller.context.params<People>();
+    final people = controller.params<People>();
 
     if (people != null) {
       title = people.nome;
